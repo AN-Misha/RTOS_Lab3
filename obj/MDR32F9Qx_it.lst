@@ -1,0 +1,1014 @@
+L 1 "MDR32F9Qx_it.c"
+N/**
+N  ******************************************************************************
+N  * @file    Examples/MDR32F9Q2_EVAL/CAN/LoopBack_RTR/MDR32F9Qx_it.c
+N  * @author  Milandr Application Team
+N  * @version V1.2.0
+N  * @date    12/09/2011
+N  * @brief   Main Interrupt Service Routines.
+N  *
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, MILANDR SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2011 Milandr</center></h2>
+N  */
+N
+N/* Includes ------------------------------------------------------------------*/
+N#include "MDR32F9Qx_it.h"
+L 1 "MDR32F9Qx_it.h" 1
+N/**
+N  ******************************************************************************
+N  * @file    Examples/MDR32F9Q2_EVAL/CAN/LoopBack_RTR/MDR32F9Qx_it.h
+N  * @author  Milandr Application Team
+N  * @version V1.2.0
+N  * @date    12/09/2011
+N  * @brief   This file contains all the functions prototypes for the interrupt.
+N  *
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, MILANDR SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2011 Milandr</center></h2>
+N  */
+N
+N/* Define to prevent recursive inclusion -------------------------------------*/
+N#ifndef __MDR32F9QX_IT_H
+N#define __MDR32F9QX_IT_H
+N
+N
+Nvoid NMI_Handler(void);
+Nvoid HardFault_Handler(void);
+Nvoid MemManage_Handler(void);
+Nvoid BusFault_Handler(void);
+Nvoid UsageFault_Handler(void);
+Nvoid SVC_Handler(void);
+Nvoid DebugMon_Handler(void);
+Nvoid PendSV_Handler(void);
+Nvoid SysTick_Handler(void);
+Nvoid CAN1_IRQHandler(void);
+Nvoid CAN2_IRQHandler(void);
+Nvoid DMA_IRQHandler(void);
+Nvoid UART1_IRQHandler(void);
+Nvoid UART2_IRQHandler(void);
+Nvoid SSP1_IRQHandler(void);
+Nvoid I2C_IRQHandler(void);
+Nvoid POWER_IRQHandler(void);
+Nvoid WWDG_IRQHandler(void);
+Nvoid Timer1_IRQHandler(void);
+Nvoid Timer2_IRQHandler(void);
+Nvoid Timer3_IRQHandler(void);
+Nvoid ADC_IRQHandler(void);
+Nvoid COMPARATOR_IRQHandler(void);
+Nvoid SSP2_IRQHandler(void);
+Nvoid BACKUP_IRQHandler(void);
+Nvoid EXT_INT1_IRQHandler(void);
+Nvoid EXT_INT2_IRQHandler(void);
+Nvoid EXT_INT3_IRQHandler(void);
+Nvoid EXT_INT4_IRQHandler(void);
+N
+N#endif /* __MDR32F9QX_IT_H */
+N
+N/******************* (C) COPYRIGHT 2011 Milandr *********/
+N
+N/* END OF FILE MDR32F9Qx_it.h */
+L 24 "MDR32F9Qx_it.c" 2
+N#include "MDR32F9Qx_can.h"
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_can.h" 1
+N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_can.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    20/07/2011
+N  * @brief   This file contains all the functions prototypes for the CAN
+N  *          firmware library.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2011 Phyton</center></h2>
+N  ******************************************************************************
+N  * FILE MDR32F9Qx_can.h
+N  */
+N
+N/* Define to prevent recursive inclusion -------------------------------------*/
+N#ifndef __MDR32F9Qx_CAN_H
+N#define __MDR32F9Qx_CAN_H
+N
+N#ifdef __cplusplus
+Sextern "C" {
+N#endif
+N
+N/* Includes ------------------------------------------------------------------*/
+N#include "MDR32F9Qx_lib.h"
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_lib.h" 1
+N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_lib.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    23/03/2011
+N  * @brief   This file contains all file IDs of the Milandr MDR32F9Qx
+N  *          firmware library source files.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
+N  * FILE MDR32F9Qx_lib.h
+N  */
+N
+N/* Define to prevent recursive inclusion -------------------------------------*/
+N#ifndef __MDR32F9QX_LIB_H
+N#define __MDR32F9QX_LIB_H
+N
+N#ifdef __cplusplus
+Sextern "C" {
+N#endif
+N
+N#define FILEID__MDR32F9X_CAN_C					1
+N#define FILEID__MDR32F9X_USB_C					2
+N#define FILEID__MDR32F9X_EEPROM_C				3
+N#define FILEID__MDR32F9X_RST_CLK_C				4
+N#define FILEID__MDR32F9X_DMA_C					5
+N#define FILEID__MDR32F9X_UART_C					6
+N#define FILEID__MDR32F9X_SSP_C					7
+N#define FILEID__MDR32F9X_I2C_C					8
+N#define FILEID__MDR32F9X_POWER_C				9
+N#define FILEID__MDR32F9X_WWDG_C					10
+N#define FILEID__MDR32F9X_IWDG_C					11
+N#define FILEID__MDR32F9X_TIMER_C				12
+N#define FILEID__MDR32F9X_ADC_C					13
+N#define FILEID__MDR32F9X_DAC_C					14
+N#define FILEID__MDR32F9X_COMP_C					15
+N#define FILEID__MDR32F9X_PORT_C					16
+N#define FILEID__MDR32F9X_BKP_C					17
+N#define FILEID__MDR32F9X_EBC_C					18
+N#define FILEID__MDR32F9X_USB_DEVICE_C			19
+N#define FILEID__MDR32F9X_USB_CDC_C				20
+N#define FILEID__MDR32F9X_MIL_STD1553_C			21
+N#define FILEID__MDR32F9X_ARINC429R_C			22
+N#define FILEID__MDR32F9X_ARINC429T_C			23
+N#define FILEID__MDR32F9X_ETH_C					24
+N#define FILEID__MDR32F9Qx_AUDIO_C				25
+N#define FILEID__MDR32F9Qx_KEYPAD_C				26
+N#define FILEID__MDR32F9Qx_LED_C					27
+N#define FILEID__MDR32F9Qx_SDIO_C				28
+N#define FILEID__MDR32F9Qx_DSP_C					29
+N
+N#define  FILEID__USER_LO                    	100
+N
+N/* Supported USB Device Classes */
+N#define USB_DEVICE_CLASS_CDC 2
+N
+N#ifdef __cplusplus
+S} // extern "C" block end
+N#endif
+N
+N#endif /* __MDR32F9QX_LIB_H */
+N
+N/******************* (C) COPYRIGHT 2013 Milandr ********************************
+N*
+N* END OF FILE MDR32F9Qx_lib.h */
+L 34 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_can.h" 2
+N
+N/** @addtogroup __MDR32F9Qx_StdPeriph_Driver MDR32F9Qx Standard Peripherial Driver
+N  * @{
+N  */
+N
+N#if defined (USE_MDR1986VE9x) || defined (USE_MDR1986VE1T) || defined (USE_MDR1986VE3)
+X#if 0L || 0L || 0L
+S
+S/** @addtogroup CAN
+S  * @{
+S  */
+S
+S/** @defgroup CAN_Exported_Types CAN Exported Types
+S  * @{
+S  */
+S
+S/**
+S  * @brief  CAN init structure definition
+S  */
+S
+Stypedef struct
+S{
+S  uint8_t  CAN_ROP;                        /*!< Enables or disables own packets reception.
+S                                                This parameter can be a value of FunctionalState */
+S  uint8_t  CAN_SAP;                        /*!< Enables or disables sending ACK on own packets.
+S                                                This parameter can be a value of FunctionalState */
+S  uint8_t  CAN_STM;                        /*!< Enables or disables Self Test mode.
+S                                                This parameter can be a value of FunctionalState */
+S  uint8_t  CAN_ROM;                        /*!< Enables or disables Read Only mode.
+S                                                This parameter can be a value of FunctionalState */
+S  uint32_t CAN_PSEG;                       /*!< Specifies the Propagation time.
+S                                                This parameter is one of @ref CAN_Propagation_time values. */
+S  uint32_t CAN_SEG1;                       /*!< Specifies the Phase Segment 1 time.
+S                                                This parameter is one of @ref CAN_Phase_Segment1_time values. */
+S  uint32_t CAN_SEG2;                       /*!< Specifies the Phase Segment 2 time.
+S                                                This parameter is one of @ref CAN_Phase_Segment2_time values. */
+S  uint32_t CAN_SJW;                        /*!< Specifies the Synchronizations jump width time.
+S                                                This parameter is one of @ref CAN_Synch_jump_width_time values. */
+S  uint32_t CAN_SB;                         /*!< Specifies the Sampling mode.
+S                                                This parameter is one of @ref CAN_Sampling_mode */
+S  uint16_t CAN_BRP;                        /*!< Specifies the System Clock Prescaler. Used to calculate Time Quanta
+S                                                by the following algorithm:
+S                                                CLK = PCLK/(BRP + 1)
+S                                                TQ(microsec) = (BRP + 1)/CLK(MHz) */
+S  uint8_t CAN_OVER_ERROR_MAX;              /*!< Specifies the upper limit for TEC / REC error counters before
+S                                                ERROR_OVER flag is set. */
+S}CAN_InitTypeDef;
+S
+S
+S/**
+S  * @brief  CAN Buffer Data container definition
+S  */
+S
+Stypedef uint32_t CAN_DataTypeDef[2];
+S
+S
+S/**
+S  * @brief  CAN Transmitted message structure definition
+S  */
+S
+Stypedef struct
+S{
+S  uint32_t ID;                             /*!< Specifies the full (Standard or Extended) identifier.
+S                                                To set Standard ID, the macro CAN_STDID_TO_EXTID should
+S                                                be used. To get Standard ID use CAN_EXTID_TO_STDID macro.
+S                                                @ref CAN_ID_conversion
+S                                                This parameter can be a value between 0 to 0x1FFFFFFF. */
+S  uint8_t PRIOR_0;                         /*!< Specifies sending priority.
+S                                                This parameter can be a value of FunctionalState. */
+S  uint8_t IDE;                             /*!< Specifies the type of identifier for the message that will be transmitted.
+S                                                This parameter can be a value of @ref CAN_identifier_type */
+S  uint8_t DLC;                             /*!< Specifies the length of the frame that will be transmitted.
+S                                                This parameter can be a value between 0 to 8 */
+S  CAN_DataTypeDef Data;                    /*!< Contains the data to be transmitted. */
+S}CAN_TxMsgTypeDef;
+S
+S/**
+S  * @brief  CAN Remote Transfer Request structure definition
+S  */
+S
+Stypedef struct
+S{
+S  uint32_t ID;                             /*!< Specifies the full (Standard or Extended) identifier.
+S                                                To set Standard ID, the macro CAN_STDID_TO_EXTID should
+S                                                be used. To get Standard ID use CAN_EXTID_TO_STDID macro.
+S                                                @ref CAN_ID_conversion
+S                                                This parameter can be a value between 0 to 0x1FFFFFFF. */
+S  uint8_t PRIOR_0;                         /*!< Specifies sending priority.
+S                                                This parameter can be a value of FunctionalState. */
+S  uint8_t IDE;                             /*!< Specifies the type of identifier for the message that will be transmitted.
+S                                                This parameter can be a value of @ref CAN_identifier_type */
+S}CAN_RTRMessageTypeDef;
+S
+S/**
+S  * @brief  CAN Remote Transfer Request Reply structure definition
+S  */
+S
+Stypedef struct
+S{
+S  uint32_t ID;                             /*!< Specifies the full (Standard or Extended) identifier.
+S                                                To set Standard ID, the macro CAN_STDID_TO_EXTID should
+S                                                be used. To get Standard ID use CAN_EXTID_TO_STDID macro.
+S                                                @ref CAN_ID_conversion
+S                                                This parameter can be a value between 0 to 0x1FFFFFFF. */
+S  uint8_t IDE;                             /*!< Specifies the type of identifier for the message that will be transmitted.
+S                                                This parameter can be a value of @ref CAN_identifier_type */
+S  uint8_t DLC;                             /*!< Specifies the length of the frame that will be transmitted.
+S                                                This parameter can be a value between 0 to 8 */
+S  CAN_DataTypeDef Data;                    /*!< Contains the data to be transmitted. */
+S}CAN_RTRReplyTypeDef;
+S
+S/**
+S  * @brief  CAN Received message header structure definition
+S  */
+S
+Stypedef struct
+S{
+S  uint32_t ID;                             /*!< Specifies the full (Standard or Extended) identifier.
+S                                                To set Standard ID, the macro CAN_STDID_TO_EXTID should
+S                                                be used. To get Standard ID use CAN_EXTID_TO_STDID macro.
+S                                                @ref CAN_ID_conversion
+S                                                This parameter can be a value between 0 to 0x1FFFFFFF. */
+S  uint8_t OVER_EN;                         /*!< Specifies if the received message could be rewritten.
+S                                                This parameter can be a value of FunctionalState. */
+S  uint8_t IDE;                             /*!< Specifies the type of identifier for the message that will be received.
+S                                                This parameter can be a value of @ref CAN_identifier_type */
+S  uint8_t DLC;                             /*!< Specifies the length of the frame that will be transmitted.
+S                                                This parameter can be a value between 0 to 8 */
+S}CAN_RxMsgHeaderTypeDef;
+S
+S/**
+S  * @brief  CAN Received message structure definition
+S  */
+S
+Stypedef struct
+S{
+S  CAN_RxMsgHeaderTypeDef Rx_Header;        /*!< Contains message header. */
+S  CAN_DataTypeDef Data;                    /*!< Contains received data. */
+S}CAN_RxMsgTypeDef;
+S
+S/**
+S  * @brief  CAN filter init structure definition
+S  */
+S
+Stypedef struct
+S{
+S  uint32_t Filter_ID;                      /*!< Specifies standard identifier for the filter.
+S                                                This parameter can be a value between 0 to 0x1FFFFFFF. */
+S  uint32_t Mask_ID;                        /*!< Specifies standard identifier for the mask.
+S                                                This parameter can be a value between 0 to 0x1FFFFFFF. */
+S}CAN_FilterInitTypeDef;
+S
+S/** @} */ /* End of group CAN_Exported_Types */
+S
+S
+S/** @defgroup CAN_Exported_Constants CAN Exported Constants
+S  * @{
+S  */
+S
+S#define IS_CAN_ALL_PERIPH(PERIPH)          (((PERIPH) == MDR_CAN1) || \
+S                                            ((PERIPH) == MDR_CAN2))
+X#define IS_CAN_ALL_PERIPH(PERIPH)          (((PERIPH) == MDR_CAN1) ||                                             ((PERIPH) == MDR_CAN2))
+S
+S/** @defgroup CAN_Propagation_time CAN Propagation time
+S  * @{
+S  */
+S
+S#define CAN_PSEG_Mul_1TQ            (((uint32_t)0x0) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 1 x TQ */
+S#define CAN_PSEG_Mul_2TQ            (((uint32_t)0x1) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 2 x TQ */
+S#define CAN_PSEG_Mul_3TQ            (((uint32_t)0x2) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 3 x TQ */
+S#define CAN_PSEG_Mul_4TQ            (((uint32_t)0x3) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 4 x TQ */
+S#define CAN_PSEG_Mul_5TQ            (((uint32_t)0x4) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 5 x TQ */
+S#define CAN_PSEG_Mul_6TQ            (((uint32_t)0x5) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 6 x TQ */
+S#define CAN_PSEG_Mul_7TQ            (((uint32_t)0x6) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 7 x TQ */
+S#define CAN_PSEG_Mul_8TQ            (((uint32_t)0x7) << CAN_BITTMNG_PSEG_Pos) /*!< Propagation time = 8 x TQ */
+S
+S#define IS_CAN_PSEG_VALUE(VALUE)    (((VALUE) == CAN_PSEG_Mul_1TQ) || \
+S                                     ((VALUE) == CAN_PSEG_Mul_2TQ) || \
+S                                     ((VALUE) == CAN_PSEG_Mul_3TQ) || \
+S                                     ((VALUE) == CAN_PSEG_Mul_4TQ) || \
+S                                     ((VALUE) == CAN_PSEG_Mul_5TQ) || \
+S                                     ((VALUE) == CAN_PSEG_Mul_6TQ) || \
+S                                     ((VALUE) == CAN_PSEG_Mul_7TQ) || \
+S                                     ((VALUE) == CAN_PSEG_Mul_8TQ))
+X#define IS_CAN_PSEG_VALUE(VALUE)    (((VALUE) == CAN_PSEG_Mul_1TQ) ||                                      ((VALUE) == CAN_PSEG_Mul_2TQ) ||                                      ((VALUE) == CAN_PSEG_Mul_3TQ) ||                                      ((VALUE) == CAN_PSEG_Mul_4TQ) ||                                      ((VALUE) == CAN_PSEG_Mul_5TQ) ||                                      ((VALUE) == CAN_PSEG_Mul_6TQ) ||                                      ((VALUE) == CAN_PSEG_Mul_7TQ) ||                                      ((VALUE) == CAN_PSEG_Mul_8TQ))
+S
+S/** @} */ /* End of group CAN_Propagation_time */
+S
+S/** @defgroup CAN_Phase_Segment1_time CAN Phase Segment 1 time
+S  * @{
+S  */
+S
+S#define CAN_SEG1_Mul_1TQ            (((uint32_t)0x0) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 1 x TQ */
+S#define CAN_SEG1_Mul_2TQ            (((uint32_t)0x1) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 2 x TQ */
+S#define CAN_SEG1_Mul_3TQ            (((uint32_t)0x2) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 3 x TQ */
+S#define CAN_SEG1_Mul_4TQ            (((uint32_t)0x3) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 4 x TQ */
+S#define CAN_SEG1_Mul_5TQ            (((uint32_t)0x4) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 5 x TQ */
+S#define CAN_SEG1_Mul_6TQ            (((uint32_t)0x5) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 6 x TQ */
+S#define CAN_SEG1_Mul_7TQ            (((uint32_t)0x6) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 7 x TQ */
+S#define CAN_SEG1_Mul_8TQ            (((uint32_t)0x7) << CAN_BITTMNG_SEG1_Pos) /*!< Phase Segment 1 time = 8 x TQ */
+S
+S#define IS_CAN_SEG1_VALUE(VALUE)    (((VALUE) == CAN_SEG1_Mul_1TQ) || \
+S                                     ((VALUE) == CAN_SEG1_Mul_2TQ) || \
+S                                     ((VALUE) == CAN_SEG1_Mul_3TQ) || \
+S                                     ((VALUE) == CAN_SEG1_Mul_4TQ) || \
+S                                     ((VALUE) == CAN_SEG1_Mul_5TQ) || \
+S                                     ((VALUE) == CAN_SEG1_Mul_6TQ) || \
+S                                     ((VALUE) == CAN_SEG1_Mul_7TQ) || \
+S                                     ((VALUE) == CAN_SEG1_Mul_8TQ))
+X#define IS_CAN_SEG1_VALUE(VALUE)    (((VALUE) == CAN_SEG1_Mul_1TQ) ||                                      ((VALUE) == CAN_SEG1_Mul_2TQ) ||                                      ((VALUE) == CAN_SEG1_Mul_3TQ) ||                                      ((VALUE) == CAN_SEG1_Mul_4TQ) ||                                      ((VALUE) == CAN_SEG1_Mul_5TQ) ||                                      ((VALUE) == CAN_SEG1_Mul_6TQ) ||                                      ((VALUE) == CAN_SEG1_Mul_7TQ) ||                                      ((VALUE) == CAN_SEG1_Mul_8TQ))
+S
+S/** @} */ /* End of group CAN_Phase_Segment1_time */
+S
+S/** @defgroup CAN_Phase_Segment2_time CAN Phase Segment 2 time
+S  * @{
+S  */
+S
+S#define CAN_SEG2_Mul_1TQ            (((uint32_t)0x0) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 1 x TQ */
+S#define CAN_SEG2_Mul_2TQ            (((uint32_t)0x1) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 2 x TQ */
+S#define CAN_SEG2_Mul_3TQ            (((uint32_t)0x2) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 3 x TQ */
+S#define CAN_SEG2_Mul_4TQ            (((uint32_t)0x3) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 4 x TQ */
+S#define CAN_SEG2_Mul_5TQ            (((uint32_t)0x4) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 5 x TQ */
+S#define CAN_SEG2_Mul_6TQ            (((uint32_t)0x5) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 6 x TQ */
+S#define CAN_SEG2_Mul_7TQ            (((uint32_t)0x6) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 7 x TQ */
+S#define CAN_SEG2_Mul_8TQ            (((uint32_t)0x7) << CAN_BITTMNG_SEG2_Pos) /*!< Phase Segment 2 time = 8 x TQ */
+S
+S#define IS_CAN_SEG2_VALUE(VALUE)    (((VALUE) == CAN_SEG2_Mul_1TQ) || \
+S                                     ((VALUE) == CAN_SEG2_Mul_2TQ) || \
+S                                     ((VALUE) == CAN_SEG2_Mul_3TQ) || \
+S                                     ((VALUE) == CAN_SEG2_Mul_4TQ) || \
+S                                     ((VALUE) == CAN_SEG2_Mul_5TQ) || \
+S                                     ((VALUE) == CAN_SEG2_Mul_6TQ) || \
+S                                     ((VALUE) == CAN_SEG2_Mul_7TQ) || \
+S                                     ((VALUE) == CAN_SEG2_Mul_8TQ))
+X#define IS_CAN_SEG2_VALUE(VALUE)    (((VALUE) == CAN_SEG2_Mul_1TQ) ||                                      ((VALUE) == CAN_SEG2_Mul_2TQ) ||                                      ((VALUE) == CAN_SEG2_Mul_3TQ) ||                                      ((VALUE) == CAN_SEG2_Mul_4TQ) ||                                      ((VALUE) == CAN_SEG2_Mul_5TQ) ||                                      ((VALUE) == CAN_SEG2_Mul_6TQ) ||                                      ((VALUE) == CAN_SEG2_Mul_7TQ) ||                                      ((VALUE) == CAN_SEG2_Mul_8TQ))
+S
+S/** @} */ /* End of group CAN_Phase_Segment2_time */
+S
+S/** @defgroup CAN_Synch_jump_width_time CAN Synchronizations jump width time
+S  * @{
+S  */
+S
+S#define CAN_SJW_Mul_1TQ            (((uint32_t)0x0) << CAN_BITTMNG_SJW_Pos) /*!< Synchronization jump width time = 1 x TQ */
+S#define CAN_SJW_Mul_2TQ            (((uint32_t)0x1) << CAN_BITTMNG_SJW_Pos) /*!< Synchronization jump width time = 2 x TQ */
+S#define CAN_SJW_Mul_3TQ            (((uint32_t)0x2) << CAN_BITTMNG_SJW_Pos) /*!< Synchronization jump width time = 3 x TQ */
+S#define CAN_SJW_Mul_4TQ            (((uint32_t)0x3) << CAN_BITTMNG_SJW_Pos) /*!< Synchronization jump width time = 4 x TQ */
+S
+S#define IS_CAN_SJW_VALUE(VALUE)    (((VALUE) == CAN_SJW_Mul_1TQ) || \
+S                                    ((VALUE) == CAN_SJW_Mul_2TQ) || \
+S                                    ((VALUE) == CAN_SJW_Mul_3TQ) || \
+S                                    ((VALUE) == CAN_SJW_Mul_4TQ))
+X#define IS_CAN_SJW_VALUE(VALUE)    (((VALUE) == CAN_SJW_Mul_1TQ) ||                                     ((VALUE) == CAN_SJW_Mul_2TQ) ||                                     ((VALUE) == CAN_SJW_Mul_3TQ) ||                                     ((VALUE) == CAN_SJW_Mul_4TQ))
+S
+S/** @} */ /* End of group CAN_Synch_jump_width_time */
+S
+S/** @defgroup CAN_Sampling_mode CAN Sampling mode
+S  * @{
+S  */
+S
+S#define CAN_SB_1_SAMPLE            (((uint32_t)0x0) << CAN_BITTMNG_SB_Pos) /*!< One sample is enough             */
+S#define CAN_SB_3_SAMPLE            (((uint32_t)0x1) << CAN_BITTMNG_SB_Pos) /*!< Three samples should be obtained */
+S
+S#define IS_CAN_SAMPLING_MODE(MODE) (((MODE) == CAN_SB_1_SAMPLE) || \
+S                                    ((MODE) == CAN_SB_3_SAMPLE))
+X#define IS_CAN_SAMPLING_MODE(MODE) (((MODE) == CAN_SB_1_SAMPLE) ||                                     ((MODE) == CAN_SB_3_SAMPLE))
+S
+S/** @} */ /* End of group CAN_Sampling_mode */
+S
+S/** @defgroup CAN_Status_Flags CAN Status Flags
+S  * @{
+S  */
+S
+S/* !< Flags */
+S#if 0
+S/* Note: this group is under #if 0 and is introduced for informational purpose
+S * only. The flags are really defined in the header file corresponding to SFR
+S * level in CAN_STATUS group */
+S#define CAN_STATUS_RX_READY         (((uint32_t)0x1) <<  0) /*!< Flag indicating that there are messages received */
+S#define CAN_STATUS_TX_READY         (((uint32_t)0x1) <<  1) /*!< Flag indicating that there are buffers for transmitting */
+S#define CAN_STATUS_ERROR_OVER       (((uint32_t)0x1) <<  2) /*!< Flag indicating that TEC or REC exceeds ERROR_MAX value */
+S#define CAN_STATUS_BIT_ERR          (((uint32_t)0x1) <<  3) /*!< Transmitting frame bits error flag */
+S#define CAN_STATUS_BIT_STUFF_ERR    (((uint32_t)0x1) <<  4) /*!< Staff frame bits error flag */
+S#define CAN_STATUS_CRC_ERR          (((uint32_t)0x1) <<  5) /*!< Frame CRC error flag */
+S#define CAN_STATUS_FRAME_ERR        (((uint32_t)0x1) <<  6) /*!< Frame format error flag */
+S#define CAN_STATUS_ACK_ERR          (((uint32_t)0x1) <<  7) /*!< Reception acknowledge error flag */
+S#define CAN_STATUS_IDLOWER          (((uint32_t)0x1) <<  8) /*!< Arbitrage "loosing" flag */
+S#define CAN_STATUS_ERR_PASSIVE      (((uint32_t)0x1) <<  9) /*!< Flag indicating that CAN controller is in the ERROR PASSIVE state */
+S#define CAN_STATUS_ERR_BUSOFF       (((uint32_t)0x1) << 10) /*!< Flag indicating that CAN controller is in the BUS OFF state */
+S#define CAN_STATUS_RX_ERR_CNT8      (((uint32_t)0x1) << 11) /*!< REC (receiver error counter) flag. Set if REC > 255 */
+S#define CAN_STATUS_TX_ERR_CNT8      (((uint32_t)0x1) << 12) /*!< TEC (transmitter error counter) flag. Set if TEC > 255 */
+S#endif /* #if 0 */
+S
+S#define IS_CAN_IT_ERROR_FLAG(FLAG)  (((FLAG) == CAN_STATUS_ERROR_OVER)    ||\
+S                                     ((FLAG) == CAN_STATUS_BIT_ERR)       ||\
+S                                     ((FLAG) == CAN_STATUS_BIT_STUFF_ERR) ||\
+S                                     ((FLAG) == CAN_STATUS_CRC_ERR)       ||\
+S                                     ((FLAG) == CAN_STATUS_FRAME_ERR)     ||\
+S                                     ((FLAG) == CAN_STATUS_ACK_ERR))
+X#define IS_CAN_IT_ERROR_FLAG(FLAG)  (((FLAG) == CAN_STATUS_ERROR_OVER)    ||                                     ((FLAG) == CAN_STATUS_BIT_ERR)       ||                                     ((FLAG) == CAN_STATUS_BIT_STUFF_ERR) ||                                     ((FLAG) == CAN_STATUS_CRC_ERR)       ||                                     ((FLAG) == CAN_STATUS_FRAME_ERR)     ||                                     ((FLAG) == CAN_STATUS_ACK_ERR))
+S
+S#define IS_CAN_IT_RXTX_FLAG(FLAG)   (((FLAG) == CAN_STATUS_RX_READY)  ||\
+S                                     ((FLAG) == CAN_STATUS_TX_READY))
+X#define IS_CAN_IT_RXTX_FLAG(FLAG)   (((FLAG) == CAN_STATUS_RX_READY)  ||                                     ((FLAG) == CAN_STATUS_TX_READY))
+S
+S/*!< CAN controller ERROR ACTIVE state mask */
+S#define CAN_STATUS_ERRACTIVE(STATUS)          !((STATUS) & (CAN_STATUS_ERR_PASSIVE | CAN_STATUS_ERR_BUSOFF))
+S
+S/* Error counters */
+S#define CAN_STATUS_TXERRCNT(STATUS) ((uint32_t)((STATUS) & CAN_STATUS_TX_ERR_CNT_Msk) >> CAN_STATUS_TX_ERR_CNT_Pos)
+S#define CAN_STATUS_RXERRCNT(STATUS) ((uint32_t)((STATUS) & CAN_STATUS_RX_ERR_CNT_Msk) >> CAN_STATUS_RX_ERR_CNT_Pos)
+S
+S/** @} */ /* End of group CAN_Status_Flags */
+S
+S/** @defgroup CAN_identifier_type CAN Identifier Type
+S  * @{
+S  */
+S
+S#define CAN_ID_STD                  ((uint8_t)0x0) /*!< Standard Id */
+S#define CAN_ID_EXT                  ((uint8_t)0x1) /*!< Extended Id */
+S#define IS_CAN_IDTYPE(IDTYPE) (((IDTYPE) == CAN_ID_STD) || ((IDTYPE) == CAN_ID_EXT))
+S
+S/** @} */ /* End of group CAN_identifier_type */
+S
+S/** @defgroup CAN_remote_transmission_request CAN Remote Transmission Request
+S  * @{
+S  */
+S
+S#define CAN_RTR_DATA                ((uint8_t)0x0)                          /*!< Data frame */
+S#define CAN_RTR_REMOTE              (((uint32_t)0x1) << CAN_DLC_RTR_Pos)    /*!< Remote frame */
+S#define IS_CAN_RTR(RTR)             (((RTR) == CAN_RTR_DATA) || ((RTR) == CAN_RTR_REMOTE))
+S
+S/** @} */ /* End of group CAN_remote_transmission_request */
+S
+S/** @defgroup CAN_Message CAN Message-related macros
+S  * @{
+S  */
+S
+S#define IS_CAN_ID(ID)               ((ID) <= ((uint32_t)0x1FFFFFFF))
+S#define IS_CAN_DLC(DLC)             ((DLC) <= ((uint8_t)0x08))
+S#define IS_CAN_BUFFER(NUMBER)       ((NUMBER) < ((uint32_t)0x00000020))
+S/** @} */ /* End of group CAN_Message */
+S
+S/** @defgroup CAN_receive_request CAN Receive Request
+S  * @{
+S  */
+S
+S#define CAN_DLC_DATA_LENGTH         ((uint32_t)0x0000000F)  /*!< Mask for message data length field */
+S
+S/** @} */ /* End of group CAN_receive_request */
+S
+S/** @defgroup CAN_Constants CAN Constants
+S  * @{
+S  */
+S
+S#define CAN_BUFFER_NUMBER           ((uint32_t)32)          /*!< Total buffer number */
+S
+S/** @} */ /* End of group CAN_Constants */
+S
+S/** @defgroup CAN_Buffer_Control_Bit_Masks CAN Buffer Control Bit Masks
+S  * @{
+S  */
+S
+S#define CAN_STATUS_EN              (((uint32_t)0x1) <<  0) /*!< Buffer enable state.
+S                                                                0 - off, 1 - on */
+S#define CAN_STATUS_RX_TXn          (((uint32_t)0x1) <<  1) /*!< Buffer operation mode.
+S                                                                0 - transmission, 1 - reception */
+S#define CAN_STATUS_OVER_EN         (((uint32_t)0x1) <<  2) /*!< Is received message overwriting allowed.
+S                                                                0 - not allowed, 1 - allowed */
+S#define CAN_STATUS_RTR_EN          (((uint32_t)0x1) <<  3) /*!< RTR answer mode
+S                                                                0 - don't answer, 1 - answer when RTR is received into buffer */
+S#define CAN_STATUS_PRIOR_0         (((uint32_t)0x1) <<  4) /*!< Sending priority
+S                                                                0 - without priority, 1 - with priority */
+S#define CAN_STATUS_TX_REQ          (((uint32_t)0x1) <<  5) /*!< Message sending request
+S                                                                0 - no request or already sent, 1 - request pending */
+S/* Flags */
+S#define CAN_STATUS_RX_FULL         (((uint32_t)0x1) <<  6) /*!< Reception readiness flag */
+S#define CAN_STATUS_OVER_WR         (((uint32_t)0x1) <<  7) /*!< Flag indicating that received message was overwritten */
+S
+S/** @} */ /* End of group CAN_Buffer_Control_Bit_Masks */
+S
+S/** @defgroup CAN_interrupts CAN Interrupts
+S  * @{
+S  */
+S
+S#define CAN_IT_GLBINTEN            (((uint32_t)0x1) <<  0) /*!< General flag that enables CAN module interrupts */
+S#define CAN_IT_RXINTEN             (((uint32_t)0x1) <<  1) /*!< Flag that enables interrupt on message reception */
+S#define CAN_IT_TXINTEN             (((uint32_t)0x1) <<  2) /*!< Flag that enables interrupt if transmission becomes available */
+S#define CAN_IT_ERRINTEN            (((uint32_t)0x1) <<  3) /*!< Flag that enables interrupt on error */
+S#define CAN_IT_ERROVERINTEN        (((uint32_t)0x1) <<  4) /*!< Flag that enables interrupt on TEC or REC exceeds ERROR_MAX value */
+S
+S#define CAN_IT_MASK		(CAN_IT_GLBINTEN | CAN_IT_RXINTEN | CAN_IT_TXINTEN |\
+S						 CAN_IT_ERRINTEN | CAN_IT_ERROVERINTEN)
+X#define CAN_IT_MASK		(CAN_IT_GLBINTEN | CAN_IT_RXINTEN | CAN_IT_TXINTEN |						 CAN_IT_ERRINTEN | CAN_IT_ERROVERINTEN)
+S
+S#define IS_CAN_ITConfig(IT) 		((IT & (~CAN_IT_MASK)) == 0)
+S
+S/** @} */ /* End of group CAN_interrupts */
+S
+S/** @defgroup CAN_Buffer_Interrupts CAN Buffer Interrupts
+S  * @{
+S  */
+S
+S#define CAN_BUFFER_0               (((uint32_t)0x1) <<  0)
+S#define CAN_BUFFER_1               (((uint32_t)0x1) <<  1)
+S#define CAN_BUFFER_2               (((uint32_t)0x1) <<  2)
+S#define CAN_BUFFER_3               (((uint32_t)0x1) <<  3)
+S#define CAN_BUFFER_4               (((uint32_t)0x1) <<  4)
+S#define CAN_BUFFER_5               (((uint32_t)0x1) <<  5)
+S#define CAN_BUFFER_6               (((uint32_t)0x1) <<  6)
+S#define CAN_BUFFER_7               (((uint32_t)0x1) <<  7)
+S#define CAN_BUFFER_8               (((uint32_t)0x1) <<  8)
+S#define CAN_BUFFER_9               (((uint32_t)0x1) <<  9)
+S#define CAN_BUFFER_10              (((uint32_t)0x1) << 10)
+S#define CAN_BUFFER_11              (((uint32_t)0x1) << 11)
+S#define CAN_BUFFER_12              (((uint32_t)0x1) << 12)
+S#define CAN_BUFFER_13              (((uint32_t)0x1) << 13)
+S#define CAN_BUFFER_14              (((uint32_t)0x1) << 14)
+S#define CAN_BUFFER_15              (((uint32_t)0x1) << 15)
+S#define CAN_BUFFER_16              (((uint32_t)0x1) << 16)
+S#define CAN_BUFFER_17              (((uint32_t)0x1) << 17)
+S#define CAN_BUFFER_18              (((uint32_t)0x1) << 18)
+S#define CAN_BUFFER_19              (((uint32_t)0x1) << 19)
+S#define CAN_BUFFER_20              (((uint32_t)0x1) << 20)
+S#define CAN_BUFFER_21              (((uint32_t)0x1) << 21)
+S#define CAN_BUFFER_22              (((uint32_t)0x1) << 22)
+S#define CAN_BUFFER_23              (((uint32_t)0x1) << 23)
+S#define CAN_BUFFER_24              (((uint32_t)0x1) << 24)
+S#define CAN_BUFFER_25              (((uint32_t)0x1) << 25)
+S#define CAN_BUFFER_26              (((uint32_t)0x1) << 26)
+S#define CAN_BUFFER_27              (((uint32_t)0x1) << 27)
+S#define CAN_BUFFER_28              (((uint32_t)0x1) << 28)
+S#define CAN_BUFFER_29              (((uint32_t)0x1) << 29)
+S#define CAN_BUFFER_30              (((uint32_t)0x1) << 30)
+S#define CAN_BUFFER_31              (((uint32_t)0x1) << 31)
+S
+S/** @} */ /* End of group CAN_Buffer_Interrupts */
+S
+S/** @defgroup CAN_Clock_BRG CAN Clock BRG
+S  * @{
+S  */
+S
+S#define CAN_HCLKdiv1               ((uint32_t)0x00000000)
+S#define CAN_HCLKdiv2               ((uint32_t)0x00000001)
+S#define CAN_HCLKdiv4               ((uint32_t)0x00000002)
+S#define CAN_HCLKdiv8               ((uint32_t)0x00000003)
+S#define CAN_HCLKdiv16              ((uint32_t)0x00000004)
+S#define CAN_HCLKdiv32              ((uint32_t)0x00000005)
+S#define CAN_HCLKdiv64              ((uint32_t)0x00000006)
+S#define CAN_HCLKdiv128             ((uint32_t)0x00000007)
+S
+S#define IS_CAN_CLOCK_BRG(BRG)      ((BRG) <= 7)
+S
+S/** @} */ /* End of group CAN_Clock_BRG */
+S
+S/** @} */ /* End of group CAN_Exported_Constants */
+S
+S/** @defgroup CAN_Exported_Macros CAN Exported Macros
+S  * @{
+S  */
+S
+S/** @defgroup CAN_ID_conversion CAN Standard to/from Extended ID conversion
+S  * @{
+S  */
+S
+S#define CAN_STDID_TO_EXTID(STDID)  ((STDID) << CAN_ID_SID_Pos)
+S#define CAN_EXTID_TO_STDID(EXTID)  ((EXTID) >> CAN_ID_SID_Pos)
+S
+S/** @} */ /* End of group CAN_ID_conversion */
+S
+S/** @} */ /* End of group CAN_Exported_Macros */
+S
+S/** @defgroup CAN_Exported_Functions CAN Exported Functions
+S  * @{
+S  */
+S
+Svoid CAN_DeInit(MDR_CAN_TypeDef* CANx);
+Svoid CAN_Init(MDR_CAN_TypeDef* CANx, const CAN_InitTypeDef* CAN_InitStruct);
+Svoid CAN_StructInit(CAN_InitTypeDef* CAN_InitStruct);
+Svoid CAN_FilterInit(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, CAN_FilterInitTypeDef* CAN_FilterInitStruct);
+Svoid CAN_ITConfig(MDR_CAN_TypeDef* CANx, uint32_t CAN_IT, FunctionalState NewState);
+Suint32_t CAN_GetDisabledBuffer(MDR_CAN_TypeDef* CANx);
+Suint32_t CAN_GetEmptyTransferBuffer(MDR_CAN_TypeDef* CANx);
+Svoid CAN_Transmit(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, CAN_TxMsgTypeDef* TxMessage);
+Svoid CAN_SendRTR(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, CAN_RTRMessageTypeDef* RTRMessage);
+Svoid CAN_RTRReply(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, CAN_RTRReplyTypeDef* RTRReplyMessage);
+Svoid CAN_Receive(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, FunctionalState OverWrite);
+Svoid CAN_GetReceivedData(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, CAN_DataTypeDef RxBuffer);
+Svoid CAN_GetRawReceivedData(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, CAN_RxMsgTypeDef* RxMessage);
+Svoid CAN_BufferRelease(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber);
+Svoid CAN_Cmd(MDR_CAN_TypeDef* CANx, FunctionalState NewState);
+Suint32_t CAN_GetStatus(MDR_CAN_TypeDef* CANx);
+Suint32_t CAN_GetBufferStatus(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber);
+SITStatus CAN_GetITState(MDR_CAN_TypeDef* CANx, uint32_t CAN_IT);
+Svoid CAN_ITClearErrorPendingBit(MDR_CAN_TypeDef* CANx, uint32_t Status_Flag);
+Svoid CAN_RxITConfig(MDR_CAN_TypeDef* CANx, uint32_t Buffer_IT, FunctionalState NewState);
+SITStatus CAN_GetRxITStatus(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber);
+Suint32_t CAN_GetRx(MDR_CAN_TypeDef* CANx);
+Svoid CAN_TxITConfig(MDR_CAN_TypeDef* CANx, uint32_t Buffer_IT, FunctionalState NewState);
+SITStatus CAN_GetTxITStatus(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber);
+Svoid CAN_ITClearRxTxPendingBit(MDR_CAN_TypeDef* CANx, uint32_t BufferNumber, uint32_t Status_Flag);
+S
+Svoid CAN_BRGInit(MDR_CAN_TypeDef* CANx, uint32_t CAN_BRG);
+S
+S
+S/** @} */ /* End of group CAN_Exported_Functions */
+S
+S/** @} */ /* End of group CAN */
+S
+N#endif /* #if defined (USE_MDR1986VE9x) || defined (USE_MDR1986VE1T) || defined (USE_MDR1986VE3) */
+N
+N/** @} */ /* End of group MDR32F9Qx_StdPeriph_Driver */
+N
+N#ifdef __cplusplus
+S} // extern "C" block end
+N#endif
+N
+N#endif /* __MDR32F9Qx_CAN_H */
+N
+N/******************* (C) COPYRIGHT 2011 Phyton *********
+N*
+N* END OF FILE MDR32F9Qx_can.h */
+N
+L 25 "MDR32F9Qx_it.c" 2
+N
+N/* Private typedef -----------------------------------------------------------*/
+N/* Private define ------------------------------------------------------------*/
+N/* Private macro -------------------------------------------------------------*/
+N/* Private variables ---------------------------------------------------------*/
+N/* Private function prototypes -----------------------------------------------*/
+N/* Private functions ---------------------------------------------------------*/
+N
+N/*******************************************************************************
+N* Function Name  : NMI_Handler
+N* Description    : This function handles NMI exception.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid NMI_Handler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : HardFault_Handler
+N* Description    : This function handles Hard Fault exception.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid HardFault_Handler(void)
+N{
+N  /* Go to infinite loop when Hard Fault exception occurs */
+N  while (1)
+N  {
+N  }
+N}
+N/*******************************************************************************
+N* Function Name  : MemManage_Handler
+N* Description    : This function handles Memory Manage exception.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid MemManage_Handler(void)
+N{
+N  /* Go to infinite loop when Memory Manage exception occurs */
+N  while (1)
+N  {
+N  }
+N}
+N/*******************************************************************************
+N* Function Name  : BusFault_Handler
+N* Description    : This function handles Bus Fault exception.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid BusFault_Handler(void)
+N{
+N  /* Go to infinite loop when Bus Fault exception occurs */
+N  while (1)
+N  {
+N  }
+N}
+N/*******************************************************************************
+N* Function Name  : UsageFault_Handler
+N* Description    : This function handles Usage Fault exception.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid UsageFault_Handler(void)
+N{
+N  /* Go to infinite loop when Usage Fault exception occurs */
+N  while (1)
+N  {
+N  }
+N}
+N/*******************************************************************************
+N* Function Name  : DebugMon_Handler
+N* Description    : This function handles Debug Monitor exception.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid DebugMon_Handler(void)
+N{
+N}
+N
+N/*******************************************************************************
+N* Function Name  : CAN1_IRQHandler
+N* Description    : This function handles CAN1 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid CAN1_IRQHandler(void)
+N{
+N
+N}
+N/*******************************************************************************
+N* Function Name  : CAN2_IRQHandler
+N* Description    : This function handles CAN2 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid CAN2_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : USB_IRQHandler
+N* Description    : This function handles USB global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid USB_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : UART1_IRQHandler
+N* Description    : This function handles UART1 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid UART1_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : UART2_IRQHandler
+N* Description    : This function handles UART2 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+N/*void UART2_IRQHandler(void)
+N{
+N}*/
+N/*******************************************************************************
+N* Function Name  : SSP1_IRQHandler
+N* Description    : This function handles SSP1 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid SSP1_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : I2C_IRQHandler
+N* Description    : This function handles I2C global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid I2C_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : POWER_IRQHandler
+N* Description    : This function handles POWER global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid POWER_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : WWDG_IRQHandler
+N* Description    : This function handles WWDG global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid WWDG_IRQHandler(void)
+N{
+N}
+N
+N/*******************************************************************************
+N* Function Name  : Timer1_IRQHandler
+N* Description    : This function handles Timer1 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+N/*void Timer1_IRQHandler(void)
+N{
+N}*/
+N/*******************************************************************************
+N* Function Name  : Timer2_IRQHandler
+N* Description    : This function handles Timer2 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid Timer2_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : Timer3_IRQHandler
+N* Description    : This function handles Timer3 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid Timer3_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : ADC_IRQHandler
+N* Description    : This function handles ADC global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid ADC_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : COMPARATOR_IRQHandler
+N* Description    : This function handles COMPARATOR global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid COMPARATOR_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : SSP2_IRQHandler
+N* Description    : This function handles SSP2 global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid SSP2_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : BACKUP_IRQHandler
+N* Description    : This function handles BACKUP global interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid BACKUP_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : EXT_INT1_IRQHandler
+N* Description    : This function handles EXT_INT1 interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid EXT_INT1_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : EXT_INT2_IRQHandler
+N* Description    : This function handles EXT_INT2 interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid EXT_INT2_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : EXT_INT3_IRQHandler
+N* Description    : This function handles EXT_INT3 global interrupt request.
+N*                  requests.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid EXT_INT3_IRQHandler(void)
+N{
+N}
+N/*******************************************************************************
+N* Function Name  : EXT_INT4_IRQHandler
+N* Description    : This function handles EXT_INT4 interrupt request.
+N* Input          : None
+N* Output         : None
+N* Return         : None
+N*******************************************************************************/
+Nvoid EXT_INT4_IRQHandler(void)
+N{
+N}
+N
+N/******************* (C) COPYRIGHT 2011 Milandr *********/
+N
+N/* END OF FILE MDR32F9Qx_it.c */
