@@ -76,7 +76,7 @@ void DMA_init(void)
 	MDR_DMA->CHNL_REQ_MASK_CLR = 1 << DMA_Channel_ADC1;
 	MDR_DMA->CHNL_USEBURST_CLR = 1 << DMA_Channel_ADC1;
 	// Задать приоритет аппаратного прерывания от DMA
-  NVIC_SetPriority (DMA_IRQn, 4);
+  NVIC_SetPriority (DMA_IRQn, 3);
 	// Разрешить прерывания от DMA
 	NVIC_EnableIRQ (DMA_IRQn);
 	// Разрешить работу DMA с каналом АЦП1

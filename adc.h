@@ -11,9 +11,9 @@
 
  #define U_ADC_U_PIN     PORT_Pin_7
 // Размер буффера результатов измерений
- #define ADC_BUFFER_SIZE 256
+ #define ADC_BUFFER_SIZE 600
  #define ADC_FREQ 10000
- #define ADC_MEAN 20
+ #define ADC_MEAN 5
  #define PING 0
  #define PONG 1
  // Калибровка вольтметра путем указания полученного значения

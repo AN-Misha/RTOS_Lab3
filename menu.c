@@ -13,6 +13,7 @@
 #include "semphr.h"
 #include "uart_io.h"
 #include "adc.h"
+#include "timer.h"
 extern xQueueHandle stdin_queue;
 extern xQueueHandle stdout_queue;
 extern xSemaphoreHandle SemaphoreDMA;
@@ -23,6 +24,15 @@ typedef enum State
     fft
 }State;
 
+typedef enum Signal
+{
+    s_sin,
+    s_ramp,
+    s_square
+}Signal;
+
+
+Signal signal;
 #define FFT_SIZE 32
 #define FFT_UPSCALE 4
 #define ARM_MATH_CM3
@@ -32,15 +42,36 @@ typedef enum State
 q15_t fft_res[FFT_SIZE*2];
 arm_rfft_instance_q15 S;
 uint16_t fft_amp[FFT_SIZE];
+float fft_amp_norm[FFT_SIZE/2];
+
+static const uint8_t image_ramp[] = 
+{
+	0xFF, 0x40, 0x20, 0x10, 0x08, 0x04,  0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x00, 0x00,  0x00, 0x00 ,      0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  0x00, 0x00, 0x80, 0x40, 0x20, 0x10, 0x08, 0x00, 0x00, 0x00,
+	0xFF, 0x80,0x80, 0x80, 0x80, 0x80, 0x80,  0x80, 0x80, 0x80, 0x80, 0x80, 0x81, 0x82, 0x84,  0x88, 0x90,       0xA0, 0xA0, 0x90, 0x88, 0x84, 0x82,  0x81, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x00, 0x00, 
+};
+
+static const uint8_t image_square[] = 
+{
+	0xFF, 0x00, 0x00, 0x00, 0x00, 0xF8,  0x08, 0x08, 0x08, 0x08, 0xF8, 0x00, 0x00, 0x00,  0x00, 0x00 ,      0x00, 0x00, 0x00, 0x00, 0x00, 0xF8,  0x08, 0x08, 0x08, 0x08, 0xF8, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0xFF, 0xA0, 0xA0, 0xA0, 0xA0, 0xBF,  0x80, 0x80, 0x80, 0x80, 0xBF, 0xA0, 0xA0, 0xA0,  0xA0, 0xA0,       0xA0, 0xA0, 0xA0, 0xA0, 0xA0, 0xBF,  0x80, 0x80, 0x80, 0x80, 0xBF, 0xA0, 0xA0, 0xA0, 0xA0, 0xA0
+};
+
+static const uint8_t image_sin[] = 
+{
+	0xFF, 0x20, 0x20, 0x10, 0x10, 0x08,  0x08, 0x08, 0x10, 0x10, 0x20, 0x20, 0x40, 0x80,  0x00, 0x00 ,      0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0xFF, 0x80,0x80, 0x80, 0x80, 0x80, 0x80,  0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x81,  0x82, 0x84,       0x84, 0x88, 0x88, 0x88, 0x84, 0x84,  0x82, 0x82, 0x81, 0x80, 0x80, 0x80, 0x80, 0x00, 0x00,
+};
 
 //2 Буфера для хранения результатов АЦП
 extern uint16_t ADC_Buffer_ping [];
 extern uint16_t ADC_Buffer_pong [];
 extern uint32_t ping_pong;
-extern TIMER_CntInitTypeDef  TIM_CntInit;
+//extern uint32_t timer_period;
 extern DMA_CtrlDataInitTypeDef DMA_InitStructure;
 	/* Структура для инициализации конфигурации канала DMA */
 extern	DMA_ChannelInitTypeDef DMA_Channel_InitStructure;
+/* Структура для инициализации таймера */
+extern TIMER_CntInitTypeDef        TIM_CntInit;
 // Функция обработчика прерывания по UART2
 // Выбранный пункт меню
 uint8_t U_MENU_Item;
@@ -70,6 +101,8 @@ void U_MENU_Init (void)
 	U_MLT_Put_String (U_MENU_Message, 3);
 }
 
+float thd;
+
 // Задача по работе с меню
 void U_MENU_Task_Function (void)
 {
@@ -84,28 +117,38 @@ void U_MENU_Task_Function (void)
 		// Пауза 20мс, чтобы по-напрасну не грузить процессор
     vTaskDelay (20);  
     // Проверка на нажатие кнопки
-	if ((U_BTN_Read_Button()==ON) && (flag_button==OFF)&& ((xTaskGetTickCount()-xLastTime)>=DrebezgTime))
-	{
-	  
-	  // Если нажата кнопка установить флаг нажатой кнопки
-	  flag_button=ON;
-	  xLastTime=xTaskGetTickCount(); // Получение текущего значения счётчика квантов	
-	}	
-	// Проверка на отпускание кнопки с учетом времени антидребезга
-	if ((flag_button==ON)&&(U_BTN_Read_Button()==OFF)&& ((xTaskGetTickCount()-xLastTime)>=DrebezgTime))
-	{
-		// Перейти к следующему пункту меню, а если прошли все, то к начальному
-	  if (++ U_MENU_Item == U_MENU_ITEM_COUNT)
-		 U_MENU_Item = 0;
-	  // Подготовить строку для выбранного пункта меню
-	  U_MENU_Message = U_MENU_Prepare_Item (U_MENU_Item); 			
-	  // Вывести на ЖКИ строку пункта меню
-	  if (U_MENU_Message)
-	  U_MLT_Put_String (U_MENU_Message, 3); 
-		// Если кнопка отжата установить флаг отжатой кнопки
-		flag_button=OFF;
-		xLastTime=xTaskGetTickCount(); // Получение текущего значения счётчика квантов	
-	}
+		if ((U_BTN_Read_Button()==ON) && (flag_button==OFF)&& ((xTaskGetTickCount()-xLastTime)>=DrebezgTime))
+		{
+			// Если нажата кнопка установить флаг нажатой кнопки
+			flag_button=ON;
+			xLastTime=xTaskGetTickCount(); // Получение текущего значения счётчика квантов	
+		}	
+		// Проверка на отпускание кнопки с учетом времени антидребезга
+		if ((flag_button==ON)&&(U_BTN_Read_Button()==OFF)&& ((xTaskGetTickCount()-xLastTime)>=DrebezgTime))
+		{
+			// Перейти к следующему пункту меню, а если прошли все, то к начальному
+		 //code
+					
+					switch(signal)
+					{
+							case s_sin:
+									printf("Sin, THD: %f, Time (ms): %u\n", thd, xTaskGetTickCount());
+							break;
+							
+							case s_ramp:
+									printf("Triangle, THD: %f, Time (ms): %u\n", thd, xTaskGetTickCount());
+							break;
+							
+							case s_square:
+									printf("Square, THD: %f, Time (ms): %u\n", thd, xTaskGetTickCount());
+							break;
+					}
+					
+					
+			// Если кнопка отжата установить флаг отжатой кнопки
+			flag_button=OFF;
+			xLastTime=xTaskGetTickCount(); // Получение текущего значения счётчика квантов	
+		}
     
 		
 	}
@@ -201,13 +244,15 @@ void Task_output(void)
 				
   }
 }
+
+
 // Задача обработчик буфера оцифрованных значений
 void Task_DSP(void)
 {
     arm_status fft_status;
-    uint16_t *buffer_ADC,front1, front2, counter = 0, tim_period;
+    uint16_t *buffer_ADC,front1, front2, front3, counter = 0, tim_period;
     uint32_t i,average,summa,period = 0;
-    float thd, summ_U = 0;
+    float summ_U = 0;
     State state = freq_meas;
 	while(1)
 	{
@@ -227,6 +272,7 @@ void Task_DSP(void)
 		бесконечности, поэтому нет необходимости проверять
 		возвращаемое функцией xSemaphoreTake() значение. */
 		xSemaphoreTake(SemaphoreDMA, portMAX_DELAY);
+		TIMER_Cmd(MDR_TIMER2, DISABLE);
 		//Задача разблокирована, семафор взят
 		if(ping_pong==PING)
 		{
@@ -241,118 +287,187 @@ void Task_DSP(void)
 			buffer_ADC=ADC_Buffer_ping;
 		}
 		// Обработка буфера оцифрованных значений
+        
 		if(state == freq_meas)
         {
-            summa=0;
-            for(i=0;i<ADC_BUFFER_SIZE;i++)
-            {
-                summa=buffer_ADC[i]+summa;
-            }
-            // Получение среднего значения
-            average=summa/ADC_BUFFER_SIZE;
-            
-            if(buffer_ADC[0] > average)
-            {
-               for(i = 0; i < ADC_BUFFER_SIZE; i++)
-               {
-                  if(buffer_ADC[i] < average)
-                  {
-                      front1 = i;
-                      break;
-                  }
-               }
-               
-               for(i = front1; i < ADC_BUFFER_SIZE; i++)
-               {
-                  if(buffer_ADC[i] > average)
-                  {
-                      front2 = i;
-                      break;
-                  }
-               }           
-            }
-            else
-            {
-               for(i = 0; i < ADC_BUFFER_SIZE; i++)
-               {
-                  if(buffer_ADC[i] > average)
-                  {
-                      front1 = i;
-                      break;
-                  }
-               }
-               
-               for(i = front1; i < ADC_BUFFER_SIZE; i++)
-               {
-                  if(buffer_ADC[i] < average)
-                  {
-                      front2 = i;
-                      break;
-                  }
-               } 
-            }
-            period += 2*(front2 - front1);
             counter++;
-            if(counter == ADC_MEAN)
+            if(counter == 5)
             {
-                counter = 0;
-                period = period / ADC_MEAN;
-                //period_global = period;
+                summa=0;
+                for(i=0;i<ADC_BUFFER_SIZE;i++)
+                {
+                    summa=buffer_ADC[i]+summa;
+                }
+                // Получение среднего значения
+                average=summa/ADC_BUFFER_SIZE;
+                
+                if(buffer_ADC[0] > average)
+                {
+                   for(i = 0; i < ADC_BUFFER_SIZE; i++)
+                   {
+                      if(buffer_ADC[i] < average)
+                      {
+                          front1 = i;
+                          break;
+                      }
+                   }
+                   for(i = front1; i < ADC_BUFFER_SIZE; i++)
+                   {
+                      if(buffer_ADC[i] > average)
+                      {
+                          front2 = i;
+                          break;
+                      }
+                   }
+                             for(i = front2; i < ADC_BUFFER_SIZE; i++)
+                   {
+                      if(buffer_ADC[i] < average)
+                      {
+                          front3 = i;
+                          break;
+                      }
+                   } 
+                }
+                
+                    
+                    
+                    //обработка буфера иная
+                else
+                {
+                   for(i = 0; i < ADC_BUFFER_SIZE; i++)
+                   {
+                      if(buffer_ADC[i] > average)
+                      {
+                          front1 = i;
+                          break;
+                      }
+                   }
+                   for(i = front1; i < ADC_BUFFER_SIZE; i++)
+                   {   
+                      if(buffer_ADC[i] < average)
+                      {
+                          front2 = i;
+                          break;
+                      }
+                   }
+                   for(i = front2; i < ADC_BUFFER_SIZE; i++)
+                   {
+                      if(buffer_ADC[i] > average)
+                      {
+                          front3 = i;
+                          break;
+                      }
+                   } 
+                }
+								
+                period = (front3 - front1);
+                tim_period = ((((float)period/ADC_FREQ) * 10000000) / 32) - 1;//(20000 / 32)/(ADC_FREQ/period);  
+				//tim_period = (312 /(ADC_FREQ/period))*999;				
                 U = ADC_FREQ/period;
+				
                 sprintf(message , "F = %5.3fHz", U);
                 U_MLT_Put_String (message, 4);
+								
                 DMA_Cmd (DMA_Channel_ADC1, DISABLE);
-                TIMER_Cmd(MDR_TIMER1, DISABLE);
-                tim_period = (1000000 / 32)/(ADC_FREQ/period);
+                TIMER_Cmd(MDR_TIMER2, DISABLE);
+				//MDR_TIMER2->STATUS = 0;
+				//tim_period=MDR_TIMER2->ARR;
+                
+				//MDR_TIMER2->ARR=tim_period;
+				//tim_period=MDR_TIMER2->ARR;
+								
                 TIM_CntInit.TIMER_Period = tim_period;
-                period = 0;
-                //ping_pong = PING;
-               // DMA_InitStructure.DMA_DestBaseAddr  =(uint32_t) &ADC_Buffer_ping;
-               // DMA_Init (DMA_Channel_ADC1, &DMA_Channel_InitStructure);
-                TIMER_CntInit(MDR_TIMER1, &TIM_CntInit);
-                DMA_Cmd (DMA_Channel_ADC1, ENABLE);
-                TIMER_Cmd(MDR_TIMER1, ENABLE);
-                state = fft;
-                
-            }
-        }
-        else if(state == fft)
-        {
-            fft_status = arm_rfft_init_q15(&S, FFT_SIZE,0, 1);
-            if(fft_status == ARM_MATH_SUCCESS)
-            {
-                arm_rfft_q15(&S, (q15_t *)&buffer_ADC[0], &fft_res[0]);
-                for(i = 0; i < FFT_SIZE*2; i++)
-                {
-                    fft_res[i]<<=FFT_UPSCALE;
-                }
-                arm_cmplx_mag_q15(&fft_res[0], (q15_t *)&fft_amp[0], FFT_SIZE);
-                for(i = 2; i < FFT_SIZE/2; i++)
-                {
-                    summ_U += fft_amp[i] * fft_amp[i];
-                }
-                thd = (sqrt(summ_U) / fft_amp[1]);
-                sprintf(message , "THD = %3.3f%%", thd);
-                U_MLT_Put_String (message, 5);
-                state = freq_meas;
-                
-                DMA_Cmd (DMA_Channel_ADC1, DISABLE);
-                TIMER_Cmd(MDR_TIMER1, DISABLE);
-                TIM_CntInit.TIMER_Period = 999;
                 period = 0;
                 //ping_pong = PING;
                 //DMA_InitStructure.DMA_DestBaseAddr  =(uint32_t) &ADC_Buffer_ping;
                 //DMA_Init (DMA_Channel_ADC1, &DMA_Channel_InitStructure);
-                TIMER_CntInit(MDR_TIMER1, &TIM_CntInit);
-                DMA_Cmd (DMA_Channel_ADC1, ENABLE);
-                TIMER_Cmd(MDR_TIMER1, ENABLE);
+                TIMER_CntInit(MDR_TIMER2, &TIM_CntInit);
                 
+                TIMER_Cmd(MDR_TIMER2, ENABLE);
+								//Timer1_init(tim_period);
+				DMA_Cmd (DMA_Channel_ADC1, ENABLE);
+                
+                state = fft;
+				counter = 0;
             }
-            
-            
+						 
+        
         }
-        
-        
+        else if(state == fft)
+        {
+            counter++;       //very govnocod
+            if(counter == 5)
+            {
+                counter = 0;
+                fft_status = arm_rfft_init_q15(&S, FFT_SIZE,0, 1);
+                if(fft_status == ARM_MATH_SUCCESS)
+                {
+                    summ_U = 0;
+                    arm_rfft_q15(&S, (q15_t *)&buffer_ADC[0], &fft_res[0]);
+                    for(i = 0; i < FFT_SIZE*2; i++)
+                    {
+                        fft_res[i]<<=FFT_UPSCALE;
+                    }
+                    arm_cmplx_mag_q15(&fft_res[0], (q15_t *)&fft_amp[0], FFT_SIZE);
+										
+										for(i = 1; i < FFT_SIZE/2; i++)
+                    {
+                        fft_amp_norm[i] = (float)fft_amp[i] / (float)fft_amp[1];
+                    }
+										
+                    for(i = 2; i < FFT_SIZE/2; i++)
+                    {
+                        summ_U += fft_amp_norm[i] * fft_amp_norm[i];
+                    }
+                    thd = 100*(sqrt(summ_U));
+                    sprintf(message , "THD = %3.3f%%", thd);
+                    U_MLT_Put_String (message, 5);
+                    
+                    
+                    DMA_Cmd (DMA_Channel_ADC1, DISABLE);
+  //                  TIMER_Cmd(MDR_TIMER1, DISABLE);
+					//MDR_TIMER2->STATUS = 0;
+                    //tim_period=MDR_TIMER2->ARR;
+					tim_period = 999;
+                    TIM_CntInit.TIMER_Period = tim_period;
+					//MDR_TIMER2->ARR=tim_period;
+                    //tim_period=MDR_TIMER2->ARR;
+                    period = 0;
+                    //ping_pong = PING;
+                    //DMA_InitStructure.DMA_DestBaseAddr  =(uint32_t) &ADC_Buffer_ping;
+                    //DMA_Init (DMA_Channel_ADC1, &DMA_Channel_InitStructure);
+                    TIMER_CntInit(MDR_TIMER2, &TIM_CntInit);
+                    DMA_Cmd (DMA_Channel_ADC1, ENABLE);
+                    TIMER_Cmd(MDR_TIMER2, ENABLE);
+                    
+										
+										//Timer1_init(999);
+										//DMA_Cmd (DMA_Channel_ADC1, ENABLE);
+										
+										
+                    if(thd < 6)
+                    {
+                        signal = s_sin;
+                        U_MLT_Put_Image (image_sin, 0, 0, 1, 3);
+                    }
+                    else if(thd < 30)
+                    {
+                        signal = s_ramp;
+                        U_MLT_Put_Image (image_ramp, 0, 0, 1, 3);
+                    }
+                    else
+                    {
+                        signal = s_square;
+                        U_MLT_Put_Image (image_square, 0, 0, 1, 3);
+                    }
+																				
+                }
+				state = freq_meas;
+            }
+        }
+            
+            
+
         
 		// Преобразование среднего значения АЦП в измеренное напряжение
 		// U_ADC_U равно 3.3, напряжение питания
@@ -361,6 +476,7 @@ void Task_DSP(void)
 		//U = ADC_FREQ/period; // получается результат вещественный в вольтах
 		// Вывести результат измерения напряжения на ЖКИ
 		// формирует строку символов с вставкой 5-символьного поля - вещественное значение с 3 цифрами после запятой 
-		
+		TIMER_Cmd(MDR_TIMER2, ENABLE);
 	}
+	
 }	

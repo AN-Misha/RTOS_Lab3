@@ -60,7 +60,7 @@ void ADC_init(void)
 		 // Источник тактирования для АЦП от частоты ЦП
 	ADC1_InitStructure.ADC_ClockSource = ADC_CLOCK_SOURCE_CPU;
 	// Делитель частоты 16, fadc=fcpu/16=80МГц/16=5 МГц, максимально возможная частота 14МГц
-	ADC1_InitStructure.ADC_Prescaler = ADC_CLK_div_16;
+	ADC1_InitStructure.ADC_Prescaler = ADC_CLK_div_8;
 	// Режим одиночного преобразования
 	ADC1_InitStructure.ADC_SamplingMode = ADC_SAMPLING_MODE_SINGLE_CONV;
 	// Автоматическое переключение каналов выключено

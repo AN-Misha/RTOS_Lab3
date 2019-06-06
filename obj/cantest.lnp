@@ -17,7 +17,7 @@
 ".\obj\tasks.o"
 ".\obj\timers.o"
 ".\obj\mlt_lcd.o"
-"C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Lib\ARM\arm_cortexM3l_math.lib"
+"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Lib\ARM\arm_cortexM3l_math.lib"
 ".\obj\startup_mdr32f9qx.o"
 ".\obj\system_mdr32f9qx.o"
 ".\obj\mdr32f9qx_adc.o"

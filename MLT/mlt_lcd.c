@@ -44,8 +44,8 @@ void U_MLT_Init (void)
 	U_MLT_Clear_Chip (2);	
 	
 	// Вывести начальное сообщение и рисунок
-  U_MLT_Put_String (init_string, 1);	
-	U_MLT_Put_Image (init_image, 0, 0, 1, 1);
+  //U_MLT_Put_String (init_string, 1);	
+	//U_MLT_Put_Image (init_image, 0, 0, 1, 1);
 
 }
 

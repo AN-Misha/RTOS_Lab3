@@ -29,19 +29,20 @@
 /* Структура для инициализации таймера */
 TIMER_CntInitTypeDef        TIM_CntInit;
 // Функция инициализация таймера 1
-void Timer1_init(void)
+void Timer1_init ()
 {
 /* Настройка таймера.
        Параметры таймера Timer1: 
        HCLK = 80 MHz, Prescaler = 7 -> Clock = HCLK/(Prescaler + 1) = 10 MHz,
        Period = 999 -> Frequency = Clock/(Period + 1) = 10 kHz */
     /* Разрешение тактирования периферийного модуля таймера 1 */
-    RST_CLK_PCLKcmd(RST_CLK_PCLK_TIMER1,ENABLE);
+    RST_CLK_PCLKcmd(RST_CLK_PCLK_TIMER2,ENABLE);
+		TIMER_ITConfig (MDR_TIMER2, TIMER_STATUS_CNT_ARR, DISABLE);
 	  /* Сброс таймера Timer1 */
-    TIMER_DeInit(MDR_TIMER1);
+    TIMER_DeInit(MDR_TIMER2);
     
     /* Разрешение тактирования Timer1 */
-    TIMER_BRGInit(MDR_TIMER1, TIMER_HCLKdiv1);
+    TIMER_BRGInit(MDR_TIMER2, TIMER_HCLKdiv1);
     
     /* Заполнение полей структуры TIM_CntInit значениями по умолчанию */
     TIMER_CntStructInit(&TIM_CntInit);
@@ -59,17 +60,17 @@ void Timer1_init(void)
     TIM_CntInit.TIMER_ARR_UpdateMode           = TIMER_ARR_Update_Immediately;
     
     /* Инициализация Timer1 */
-    TIMER_CntInit(MDR_TIMER1, &TIM_CntInit);
+    TIMER_CntInit(MDR_TIMER2, &TIM_CntInit);
     
   // Разрешить прерывания по переполнению таймера 
-  TIMER_ITConfig (MDR_TIMER1, TIMER_STATUS_CNT_ARR, ENABLE);
-  // Задать приоритет выше, чем у планировщика задач. 
-  NVIC_SetPriority (Timer1_IRQn,3);
-	
-  // Разрешить прерывания от Timer1
-  NVIC_EnableIRQ (Timer1_IRQn); 
+		TIMER_ITConfig (MDR_TIMER2, TIMER_STATUS_CNT_ARR, ENABLE);
+		// Задать приоритет выше, чем у планировщика задач. 
+		NVIC_SetPriority (Timer2_IRQn,3);
+		
+		// Разрешить прерывания от Timer1
+		NVIC_EnableIRQ (Timer2_IRQn); 
      /* Разрешение работы Timer1 */
-    TIMER_Cmd(MDR_TIMER1, ENABLE);
+    TIMER_Cmd(MDR_TIMER2, ENABLE);
 
 	
 

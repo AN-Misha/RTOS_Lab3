@@ -342,16 +342,14 @@ ARM Macro Assembler    Page 6
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\obj\startup_mdr32f9qx.d -o.\obj\startup_mdr32f9qx.o -I.\RTE\Devi
-ce\MDR1986BE92 -I.\RTE\_Target_1 -IC:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\C
-MSIS\5.5.1\CMSIS\Core\Include -IC:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSI
-S\5.5.1\CMSIS\DSP\Include -IC:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986
-BExx\1.51\Config -IC:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51
-\Libraries\CMSIS\CM3\CoreSupport -IC:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\
-MDR1986BExx\1.51\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc -IC:\Users\AN-
-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_
-Driver\inc --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 
-527" --predefine="_RTE_ SETA 1" --predefine="USE_MDR32F9Q2_Rev1 SETA 1" --list=
-.\obj\startup_mdr32f9qx.lst RTE\Device\MDR1986BE92\startup_MDR32F9Qx.s
+ce\MDR1986BE92 -I.\RTE\_Target_1 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\In
+clude -IC:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Config -IC:\Keil_v5\ARM\PACK\K
+eil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\CoreSupport -IC:\Keil_v5\ARM\PACK\Keil\
+MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc -IC:\Keil_v5\AR
+M\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc --predefin
+e="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 524" --predefine="_RT
+E_ SETA 1" --predefine="USE_MDR32F9Q2_Rev1 SETA 1" --list=.\obj\startup_mdr32f9
+qx.lst RTE\Device\MDR1986BE92\startup_MDR32F9Qx.s
 
 
 

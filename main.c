@@ -57,12 +57,12 @@ void UART2_IRQHandler(void)
     portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 /* Функция обработчика прерывания по Timer1 */
-void Timer1_IRQHandler(void)
+void Timer2_IRQHandler(void)
 {
-	  // Запуск АЦП1 для однократного преобразования 
-	  ADC1_Start();
+    ADC1_Start();
+	
     /* Сброс флага прерывания по переполнению таймера */
-    TIMER_ClearITPendingBit(MDR_TIMER1, TIMER_STATUS_CNT_ARR);
+    TIMER_ClearITPendingBit(MDR_TIMER2, TIMER_STATUS_CNT_ARR);
 }
 /*Функция обработчика прерывания по DMA*/
 void DMA_IRQHandler(void)
@@ -135,7 +135,7 @@ int main(void)
 	// Инициализация ЖКИ
 	U_MLT_Init ();	
 	// Инициализация меню
-	U_MENU_Init ();
+	//U_MENU_Init ();
 
   // Создание семафора для синхронизации задачи обработчика буфера оцифрованных значений
 	vSemaphoreCreateBinary(SemaphoreDMA);
@@ -146,16 +146,16 @@ int main(void)
 	  //Создание задачи по работе с меню 
     xTaskCreate(U_MENU_Task_Function,(char *) "Task1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
 	  //Создание задачи по выводу бегущей строки на ЖКИ 
-    xTaskCreate(U_MENU_Running_String_Task_Function, (char *) "Task2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
+    //xTaskCreate(U_MENU_Running_String_Task_Function, (char *) "Task2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
     //Создание задачи по выводу на ЖКИ информации полученной с терминала по UART
-     xTaskCreate(U_MENU_Output, (char *) "Task3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
+     //xTaskCreate(U_MENU_Output, (char *) "Task3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
 		 //Создание задачи приветствия
      xTaskCreate(U_Privet, (char *) "Task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
 		 //Создание задачи для работы с выводом по UART
      xTaskCreate(Task_output, (char *) "Task5", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
 		 //Создание задачи обработчика буфера оцифрованных значений Task_DSP
 		// Функция задачи Task_DSP находится в модуле menu.c
-     xTaskCreate(Task_DSP, (char *) "Task6", 128, NULL, tskIDLE_PRIORITY + 1, NULL);
+     xTaskCreate(Task_DSP, (char *) "Task6", 128, NULL, tskIDLE_PRIORITY + 3, NULL);
 	// Запуск планировщика задач 	
     vTaskStartScheduler();
 }

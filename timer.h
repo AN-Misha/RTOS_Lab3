@@ -9,6 +9,6 @@
 #include "common.h"
 
 // Прототип функции инициализации таймера 1
-void Timer1_init (void);
+void Timer1_init ();
 
 

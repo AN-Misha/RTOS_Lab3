@@ -216,9 +216,11 @@ void WWDG_IRQHandler(void)
 * Output         : None
 * Return         : None
 *******************************************************************************/
+/*
 void Timer2_IRQHandler(void)
 {
 }
+*/
 /*******************************************************************************
 * Function Name  : Timer3_IRQHandler
 * Description    : This function handles Timer3 global interrupt request.

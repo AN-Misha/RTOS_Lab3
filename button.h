@@ -12,9 +12,9 @@
 #include "common.h"
 
 // Порт кнопки
-#define U_BTN_PORT MDR_PORTB
+#define U_BTN_PORT MDR_PORTC
 // Линия для кнопки
-#define U_BTN_PIN PORT_Pin_5
+#define U_BTN_PIN PORT_Pin_2
 
 // Инициализировать кнопку
 void U_BTN_Init (void);

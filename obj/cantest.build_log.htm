@@ -3,223 +3,174 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.27.1.0
-Copyright (C) 2019 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: N/A N/A, N/A, LIC=3UUDY-IEV22-EY1VT-RLKQL-ETB59-973GX
+IDE-Version: µVision V5.24.2.0
+Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: PE PE, PE, LIC=NHY12-9370W-IKVB7-EU8BS-1VVY6-BD1QS
  
 Tool Versions:
-Toolchain:       MDK-ARM Professional  Version: 5.27.1.0
+Toolchain:       MDK-ARM Professional  Version: 5.24.1
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 6 (build 750)
-Assembler:       Armasm.exe V5.06 update 6 (build 750)
-Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
-Library Manager: ArmAr.exe V5.06 update 6 (build 750)
-Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.27.1.0
-Dialog DLL:      DCM.DLL V1.17.2.0
-Target DLL:      Segger\JL2CM3.dll V2.99.35.0
-Dialog DLL:      TCM.DLL V1.36.1.0
+C Compiler:      Armcc.exe V5.06 update 5 (build 528)
+Assembler:       Armasm.exe V5.06 update 5 (build 528)
+Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
+Library Manager: ArmAr.exe V5.06 update 5 (build 528)
+Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
+CPU DLL:         SARMCM3.DLL V5.24.1
+Dialog DLL:      DCM.DLL V1.16.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.26.0
+Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-D:\Documents\Projects\MDR\Lab3\RTOS_Lab3\sample3_1.uvprojx
-Project File Date:  05/25/2019
+D:\Àíèêèí Ì. Ä\SAMPLE3_1\sample3_1.uvprojx
+Project File Date:  05/23/2019
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Rebuild target 'Target 1'
-compiling MDR32F9Qx_it.c...
-compiling init.c...
-compiling main.c...
-main.c(111): warning:  #223-D: function "Timer1_init" declared implicitly
-  	Timer1_init();
-main.c(133): warning:  #223-D: function "DMA_init" declared implicitly
-  	DMA_init();
-main.c(147): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "TaskFunction_t"
-      xTaskCreate(U_MENU_Task_Function,(char *) "Task1", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
-main.c(149): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "TaskFunction_t"
-      xTaskCreate(U_MENU_Running_String_Task_Function, (char *) "Task2", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
-main.c(151): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "TaskFunction_t"
-       xTaskCreate(U_MENU_Output, (char *) "Task3", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 2, NULL);
-main.c(153): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "TaskFunction_t"
-       xTaskCreate(U_Privet, (char *) "Task4", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
-main.c(155): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "TaskFunction_t"
-       xTaskCreate(Task_output, (char *) "Task5", configMINIMAL_STACK_SIZE, NULL, tskIDLE_PRIORITY + 1, NULL);
-main.c(158): warning:  #167-D: argument of type "void (*)(void)" is incompatible with parameter of type "TaskFunction_t"
-       xTaskCreate(Task_DSP, (char *) "Task6", 128, NULL, tskIDLE_PRIORITY + 1, NULL);
-main.c: 8 warnings, 0 errors
-compiling button.c...
-compiling uart_io.c...
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'Target 1'
 compiling menu.c...
-menu.c(173): warning:  #223-D: function "scanf" declared implicitly
+timer.h(12): warning:  #1295-D: Deprecated declaration Timer1_init - give arg types
+  void Timer1_init ();
+menu.c(135): warning:  #223-D: function "printf" declared implicitly
+  									printf("Sin, THD: %f, Time (ms): %u\n", thd, xTaskGetTickCount());
+menu.c(216): warning:  #223-D: function "scanf" declared implicitly
      scanf("%16s", Message_UART);
-menu.c(177): warning:  #223-D: function "printf" declared implicitly
+menu.c(220): warning:  #223-D: function "printf" declared implicitly
   	 printf("Transmit Message To LCD - Success\r\n");
-menu.c(184): warning:  #223-D: function "printf" declared implicitly
+menu.c(227): warning:  #223-D: function "printf" declared implicitly
   	printf("Work with Semaphors\r\n");
-menu.c(302): warning:  #223-D: function "sprintf" declared implicitly
+menu.c(368): warning:  #223-D: function "sprintf" declared implicitly
                   sprintf(message , "F = %5.3fHz", U);
-menu.c(335): warning:  #223-D: function "sprintf" declared implicitly
-                  sprintf(message , "THD = %3.3f%%", thd);
-menu.c: 5 warnings, 0 errors
-compiling adc.c...
-compiling dma.c...
-compiling croutine.c...
-compiling timer.c...
-compiling event_groups.c...
-compiling heap_2.c...
-compiling list.c...
-compiling port.c...
-compiling queue.c...
-compiling tasks.c...
-compiling timers.c...
-assembling startup_MDR32F9Qx.s...
-compiling mlt_lcd.c...
-compiling system_MDR32F9Qx.c...
-compiling MDR32F9Qx_adc.c...
-compiling MDR32F9Qx_bkp.c...
-compiling MDR32F9Qx_can.c...
-compiling MDR32F9Qx_comp.c...
-compiling MDR32F9Qx_dac.c...
-compiling MDR32F9Qx_dma.c...
-compiling MDR32F9Qx_ebc.c...
-compiling MDR32F9Qx_eeprom.c...
-compiling MDR32F9Qx_i2c.c...
-compiling MDR32F9Qx_iwdg.c...
-compiling MDR32F9Qx_port.c...
-compiling MDR32F9Qx_power.c...
-compiling MDR32F9Qx_rst_clk.c...
-compiling MDR32F9Qx_ssp.c...
-compiling MDR32F9Qx_timer.c...
-compiling MDR32F9Qx_uart.c...
+menu.c(423): warning:  #223-D: function "sprintf" declared implicitly
+                      sprintf(message , "THD = %3.3f%%", thd);
+menu.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=23996 RO-data=75432 RW-data=172 ZI-data=24404  
+Program Size: Code=23108 RO-data=77336 RW-data=168 ZI-data=26456  
 FromELF: creating hex file...
-".\obj\cantest.axf" - 0 Error(s), 13 Warning(s).
+".\obj\cantest.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.5.1.pack
-                ARM.CMSIS.5.5.1
+                http://www.keil.com/pack/ARM.CMSIS.5.0.1.pack
+                ARM.CMSIS.5.0.1
                 CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.2.0
-   * Component: DSP Variant: Library Version: 1.6.0
+   * Component: DSP Version: 1.5.1
+   * Component: CORE Version: 5.0.1
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.MDR1986BExx.1.51.pack
-                Keil.MDR1986BExx.1.51
+                http://www.keil.com/pack/Keil.MDR1986BExx.1.4.pack
+                Keil.MDR1986BExx.1.4
                 Milandr MDR1986BExx Series Device Support, Drivers and Examples
-   * Component: Startup Version: 1.5
-   * Component: ADC Version: 1.5
-   * Component: BKP Version: 1.5
-   * Component: CAN Version: 1.5
-   * Component: COMP Version: 1.5
-   * Component: DAC Version: 1.5
-   * Component: DMA Version: 1.5
-   * Component: EBC Version: 1.5
-   * Component: EEMPROM Version: 1.5
-   * Component: I2C Version: 1.5
-   * Component: IWDG Version: 1.5
-   * Component: LIB Version: 1.5
-   * Component: PORT Version: 1.5
-   * Component: POWER Version: 1.5
-   * Component: RST_CLK Version: 1.5
-   * Component: SSP Version: 1.5
-   * Component: TIMER Version: 1.5
-   * Component: UART Version: 1.5
+   * Component: UART Version: 1.3.1
+   * Component: TIMER Version: 1.3.1
+   * Component: SSP Version: 1.3.1
+   * Component: RST_CLK Version: 1.3.1
+   * Component: POWER Version: 1.3.1
+   * Component: PORT Version: 1.3.1
+   * Component: LIB Version: 1.3.1
+   * Component: IWDG Version: 1.3.1
+   * Component: I2C Version: 1.3.1
+   * Component: EEMPROM Version: 1.3.1
+   * Component: EBC Version: 1.3.1
+   * Component: DMA Version: 1.3.1
+   * Component: DAC Version: 1.3.1
+   * Component: COMP Version: 1.3.1
+   * Component: CAN Version: 1.3.1
+   * Component: BKP Version: 1.3.1
+   * Component: ADC Version: 1.3.1
+   * Component: Startup_MDR1986BE9x Version: 1.3.1
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\Device\MDR1986BE92
   .\RTE\_Target_1
-  C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include
-  C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\DSP\Include
-  C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Config
-  C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\CMSIS\CM3\CoreSupport
-  C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc
-  C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
+  C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Config
+  C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\CoreSupport
+  C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc
+  C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.2.0
+   * Component: Keil::Drivers:UART:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_uart.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_uart.c
 
-   * Component: ARM::CMSIS:DSP:Library:1.6.0
-      Library file:  CMSIS\DSP\Lib\ARM\arm_cortexM3l_math.lib
-      Include file:  CMSIS\DSP\Include\arm_math.h
-
-   * Component: Keil::Device:Startup:1.5
-      Include file:  Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.h
-      Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\startup_MDR32F9Qx.s
-      Include file:  Config\MDR32F9Qx_config.h
-      Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.c
-      Include file:  Libraries\CMSIS\CM3\CoreSupport\core_cm3.h
-
-   * Component: Keil::Drivers:ADC:1.5
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_adc.c
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_adc.h
-
-   * Component: Keil::Drivers:BKP:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_bkp.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_bkp.c
-
-   * Component: Keil::Drivers:CAN:1.5
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_can.c
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_can.h
-
-   * Component: Keil::Drivers:COMP:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_comp.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_comp.c
-
-   * Component: Keil::Drivers:DAC:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_dac.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_dac.c
-
-   * Component: Keil::Drivers:DMA:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_dma.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_dma.c
-
-   * Component: Keil::Drivers:EBC:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_ebc.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_ebc.c
-
-   * Component: Keil::Drivers:EEMPROM:1.5
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_eeprom.c
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_eeprom.h
-
-   * Component: Keil::Drivers:I2C:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_i2c.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_i2c.c
-
-   * Component: Keil::Drivers:IWDG:1.5
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_iwdg.c
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_iwdg.h
-
-   * Component: Keil::Drivers:LIB:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_lib.h
-
-   * Component: Keil::Drivers:PORT:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_port.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_port.c
-
-   * Component: Keil::Drivers:POWER:1.5
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_power.c
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_power.h
-
-   * Component: Keil::Drivers:RST_CLK:1.5
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_rst_clk.c
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_rst_clk.h
-
-   * Component: Keil::Drivers:SSP:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_ssp.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_ssp.c
-
-   * Component: Keil::Drivers:TIMER:1.5
+   * Component: Keil::Drivers:TIMER:1.3.1
       Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_timer.h
       Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_timer.c
 
-   * Component: Keil::Drivers:UART:1.5
-      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_uart.h
-      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_uart.c
-Build Time Elapsed:  00:00:04
+   * Component: Keil::Drivers:SSP:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_ssp.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_ssp.c
+
+   * Component: Keil::Drivers:RST_CLK:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_rst_clk.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_rst_clk.c
+
+   * Component: Keil::Drivers:POWER:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_power.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_power.c
+
+   * Component: Keil::Drivers:PORT:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_port.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_port.c
+
+   * Component: Keil::Drivers:LIB:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_lib.h
+
+   * Component: Keil::Drivers:IWDG:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_iwdg.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_iwdg.c
+
+   * Component: Keil::Drivers:I2C:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_i2c.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_i2c.c
+
+   * Component: Keil::Drivers:EEMPROM:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_eeprom.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_eeprom.c
+
+   * Component: Keil::Drivers:EBC:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_ebc.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_ebc.c
+
+   * Component: Keil::Drivers:DMA:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_dma.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_dma.c
+
+   * Component: Keil::Drivers:DAC:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_dac.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_dac.c
+
+   * Component: Keil::Drivers:COMP:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_comp.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_comp.c
+
+   * Component: Keil::Drivers:CAN:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_can.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_can.c
+
+   * Component: Keil::Drivers:BKP:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_bkp.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_bkp.c
+
+   * Component: Keil::Drivers:ADC:1.3.1
+      Include file:  Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_adc.h
+      Source file:   Libraries\MDR32F9Qx_StdPeriph_Driver\src\MDR32F9Qx_adc.c
+
+   * Component: Keil::Device:Startup_MDR1986BE9x:1.3.1
+      Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\startup_MDR32F9Qx.s
+      Source file:   Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.c
+      Include file:  Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\startup\arm\system_MDR32F9Qx.h
+      Include file:  Libraries\CMSIS\CM3\CoreSupport\core_cm3.h
+      Include file:  Config\MDR32F9Qx_config.h
+
+   * Component: ARM::CMSIS:DSP:1.5.1
+      Include file:  CMSIS\Include\arm_math.h
+      Library file:  CMSIS\Lib\ARM\arm_cortexM3l_math.lib
+
+   * Component: ARM::CMSIS:CORE:5.0.1
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>

@@ -10,8 +10,27 @@ N
 N/* Подключение заголовочного файла с макроопределениями 
 N   регистров специальных функций К1986ВЕ92QI(MDR32F9Q2I) */
 N#include <MDR32Fx.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc\MDR32Fx.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc\MDR32Fx.h" 1
 N/**
+N  ******************************************************************************
+N  * @file    MDR32Fx.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    22/06/2011
+N  * @brief   This file contains all the Special Function Registers definitions
+N  *          for the Milandr MDR32Fx microcontroller.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
 N  * FILE MDR32Fx.h
 N  */
 N
@@ -91,15 +110,15 @@ N/** @} */ /* End of group __Configuration_of_CMSIS */
 N
 N/* Includes ------------------------------------------------------------------*/
 N#include "core_cm3.h"
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h" 1
 N/**************************************************************************//**
 N * @file     core_cm3.h
 N * @brief    CMSIS Cortex-M3 Core Peripheral Access Layer Header File
-N * @version  V5.1.0
-N * @date     13. March 2019
+N * @version  V5.0.1
+N * @date     30. January 2017
 N ******************************************************************************/
 N/*
-N * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
+N * Copyright (c) 2009-2016 ARM Limited. All rights reserved.
 N *
 N * SPDX-License-Identifier: Apache-2.0
 N *
@@ -118,9 +137,9 @@ N */
 N
 N#if   defined ( __ICCARM__ )
 X#if   0L
-S  #pragma system_include         /* treat file as system include file for MISRA check */
-S#elif defined (__clang__)
-X#elif 0L
+S #pragma system_include         /* treat file as system include file for MISRA check */
+S#elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+X#elif 1L && (5060528 >= 6010050)
 S  #pragma clang system_header   /* treat file as system include file */
 N#endif
 N
@@ -140,7 +159,7 @@ N */
 N
 N#ifndef __stdint_h
 N#define __stdint_h
-N#define __ARMCLIB_VERSION 5060037
+N#define __ARMCLIB_VERSION 5060034
 N
 N  #ifdef __INT64_TYPE__
 S    /* armclang predefines '__INT64_TYPE__' and '__INT64_C_SUFFIX__' */
@@ -458,7 +477,7 @@ N
 N#endif /* __stdint_h */
 N
 N/* end of stdint.h */
-L 35 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h" 2
+L 35 "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h" 2
 N
 N#ifdef __cplusplus
 S extern "C" {
@@ -487,57 +506,11 @@ N  \ingroup Cortex_M3
 N  @{
 N */
 N
-N#include "cmsis_version.h"
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_version.h" 1
-N/**************************************************************************//**
-N * @file     cmsis_version.h
-N * @brief    CMSIS Core(M) Version definitions
-N * @version  V5.0.2
-N * @date     19. April 2017
-N ******************************************************************************/
-N/*
-N * Copyright (c) 2009-2017 ARM Limited. All rights reserved.
-N *
-N * SPDX-License-Identifier: Apache-2.0
-N *
-N * Licensed under the Apache License, Version 2.0 (the License); you may
-N * not use this file except in compliance with the License.
-N * You may obtain a copy of the License at
-N *
-N * www.apache.org/licenses/LICENSE-2.0
-N *
-N * Unless required by applicable law or agreed to in writing, software
-N * distributed under the License is distributed on an AS IS BASIS, WITHOUT
-N * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-N * See the License for the specific language governing permissions and
-N * limitations under the License.
-N */
-N
-N#if   defined ( __ICCARM__ )
-X#if   0L
-S  #pragma system_include         /* treat file as system include file for MISRA check */
-S#elif defined (__clang__)
-X#elif 0L
-S  #pragma clang system_header   /* treat file as system include file */
-N#endif
-N
-N#ifndef __CMSIS_VERSION_H
-N#define __CMSIS_VERSION_H
-N
-N/*  CMSIS Version definitions */
-N#define __CM_CMSIS_VERSION_MAIN  ( 5U)                                      /*!< [31:16] CMSIS Core(M) main version */
-N#define __CM_CMSIS_VERSION_SUB   ( 1U)                                      /*!< [15:0]  CMSIS Core(M) sub version */
-N#define __CM_CMSIS_VERSION       ((__CM_CMSIS_VERSION_MAIN << 16U) | \
-N                                   __CM_CMSIS_VERSION_SUB           )       /*!< CMSIS Core(M) version number */
-X#define __CM_CMSIS_VERSION       ((__CM_CMSIS_VERSION_MAIN << 16U) |                                    __CM_CMSIS_VERSION_SUB           )        
-N#endif
-L 64 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h" 2
-N
 N/*  CMSIS CM3 definitions */
-N#define __CM3_CMSIS_VERSION_MAIN  (__CM_CMSIS_VERSION_MAIN)              /*!< \deprecated [31:16] CMSIS HAL main version */
-N#define __CM3_CMSIS_VERSION_SUB   (__CM_CMSIS_VERSION_SUB)               /*!< \deprecated [15:0]  CMSIS HAL sub version */
+N#define __CM3_CMSIS_VERSION_MAIN  ( 5U)                                  /*!< [31:16] CMSIS HAL main version */
+N#define __CM3_CMSIS_VERSION_SUB   ( 0U)                                  /*!< [15:0]  CMSIS HAL sub version */
 N#define __CM3_CMSIS_VERSION       ((__CM3_CMSIS_VERSION_MAIN << 16U) | \
-N                                    __CM3_CMSIS_VERSION_SUB           )  /*!< \deprecated CMSIS HAL version number */
+N                                    __CM3_CMSIS_VERSION_SUB           )  /*!< CMSIS HAL version number */
 X#define __CM3_CMSIS_VERSION       ((__CM3_CMSIS_VERSION_MAIN << 16U) |                                     __CM3_CMSIS_VERSION_SUB           )   
 N
 N#define __CORTEX_M                (3U)                                   /*!< Cortex-M Core */
@@ -555,7 +528,7 @@ S    #error "Compiler generates FPU instructions for a device without an FPU (ch
 N  #endif
 N
 N#elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
-S  #if defined __ARM_FP
+S  #if defined __ARM_PCS_VFP
 S    #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
 S  #endif
 S
@@ -587,15 +560,15 @@ S
 N#endif
 N
 N#include "cmsis_compiler.h"               /* CMSIS compiler specific defines */
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h" 1
 N/**************************************************************************//**
 N * @file     cmsis_compiler.h
 N * @brief    CMSIS compiler generic header file
-N * @version  V5.1.0
-N * @date     09. October 2018
+N * @version  V5.0.1
+N * @date     30. January 2017
 N ******************************************************************************/
 N/*
-N * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+N * Copyright (c) 2009-2017 ARM Limited. All rights reserved.
 N *
 N * SPDX-License-Identifier: Apache-2.0
 N *
@@ -618,20 +591,20 @@ N
 N#include <stdint.h>
 N
 N/*
-N * Arm Compiler 4/5
+N * ARM Compiler 4/5
 N */
 N#if   defined ( __CC_ARM )
 X#if   1L
 N  #include "cmsis_armcc.h"
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_armcc.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_armcc.h" 1
 N/**************************************************************************//**
 N * @file     cmsis_armcc.h
-N * @brief    CMSIS compiler ARMCC (Arm Compiler 5) header file
-N * @version  V5.0.5
-N * @date     14. December 2018
+N * @brief    CMSIS compiler ARMCC (ARM compiler V5) header file
+N * @version  V5.0.1
+N * @date     03. February 2017
 N ******************************************************************************/
 N/*
-N * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+N * Copyright (c) 2009-2017 ARM Limited. All rights reserved.
 N *
 N * SPDX-License-Identifier: Apache-2.0
 N *
@@ -653,8 +626,8 @@ N#define __CMSIS_ARMCC_H
 N
 N
 N#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 400677)
-X#if 1L && (5060750 < 400677)
-S  #error "Please use Arm Compiler Toolchain V4.0.677 or later!"
+X#if 1L && (5060528 < 400677)
+S  #error "Please use ARM Compiler Toolchain V4.0.677 or later!"
 N#endif
 N
 N/* CMSIS compiler control architecture macros */
@@ -677,64 +650,39 @@ N
 N  /* __ARM_ARCH_8M_BASE__  not applicable */
 N  /* __ARM_ARCH_8M_MAIN__  not applicable */
 N
-N/* CMSIS compiler control DSP macros */
-N#if ((defined (__ARM_ARCH_7EM__) && (__ARM_ARCH_7EM__ == 1))     )
-X#if ((0L && (__ARM_ARCH_7EM__ == 1))     )
-S  #define __ARM_FEATURE_DSP         1
-N#endif
 N
 N/* CMSIS compiler specific defines */
 N#ifndef   __ASM
-N  #define __ASM                                  __asm
+N  #define __ASM                     __asm
 N#endif
 N#ifndef   __INLINE
-N  #define __INLINE                               __inline
+N  #define __INLINE                  __inline
 N#endif
 N#ifndef   __STATIC_INLINE
-N  #define __STATIC_INLINE                        static __inline
+N  #define __STATIC_INLINE           static __inline
 N#endif
-N#ifndef   __STATIC_FORCEINLINE                 
-N  #define __STATIC_FORCEINLINE                   static __forceinline
-N#endif           
 N#ifndef   __NO_RETURN
-N  #define __NO_RETURN                            __declspec(noreturn)
+N  #define __NO_RETURN               __declspec(noreturn)
 N#endif
 N#ifndef   __USED
-N  #define __USED                                 __attribute__((used))
+N  #define __USED                    __attribute__((used))
 N#endif
 N#ifndef   __WEAK
-N  #define __WEAK                                 __attribute__((weak))
+N  #define __WEAK                    __attribute__((weak))
 N#endif
-N#ifndef   __PACKED
-N  #define __PACKED                               __attribute__((packed))
-N#endif
-N#ifndef   __PACKED_STRUCT
-N  #define __PACKED_STRUCT                        __packed struct
-N#endif
-N#ifndef   __PACKED_UNION
-N  #define __PACKED_UNION                         __packed union
-N#endif
-N#ifndef   __UNALIGNED_UINT32        /* deprecated */
-N  #define __UNALIGNED_UINT32(x)                  (*((__packed uint32_t *)(x)))
-N#endif
-N#ifndef   __UNALIGNED_UINT16_WRITE
-N  #define __UNALIGNED_UINT16_WRITE(addr, val)    ((*((__packed uint16_t *)(addr))) = (val))
-N#endif
-N#ifndef   __UNALIGNED_UINT16_READ
-N  #define __UNALIGNED_UINT16_READ(addr)          (*((const __packed uint16_t *)(addr)))
-N#endif
-N#ifndef   __UNALIGNED_UINT32_WRITE
-N  #define __UNALIGNED_UINT32_WRITE(addr, val)    ((*((__packed uint32_t *)(addr))) = (val))
-N#endif
-N#ifndef   __UNALIGNED_UINT32_READ
-N  #define __UNALIGNED_UINT32_READ(addr)          (*((const __packed uint32_t *)(addr)))
+N#ifndef   __UNALIGNED_UINT32
+N  #define __UNALIGNED_UINT32(x)     (*((__packed uint32_t *)(x)))
 N#endif
 N#ifndef   __ALIGNED
-N  #define __ALIGNED(x)                           __attribute__((aligned(x)))
+N  #define __ALIGNED(x)              __attribute__((aligned(x)))
 N#endif
-N#ifndef   __RESTRICT
-N  #define __RESTRICT                             __restrict
+N#ifndef   __PACKED
+N  #define __PACKED                  __attribute__((packed))
 N#endif
+N#ifndef   __PACKED_STRUCT
+N  #define __PACKED_STRUCT           __packed struct
+N#endif
+N
 N
 N/* ###########################  Core Function Access  ########################### */
 N/** \ingroup  CMSIS_Core_FunctionInterface
@@ -1006,42 +954,46 @@ N           (defined (__ARM_ARCH_7EM__) && (__ARM_ARCH_7EM__ == 1))     ) */
 X#endif  
 N
 N
-N/**
-N  \brief   Get FPSCR
-N  \details Returns the current value of the Floating Point Status/Control register.
-N  \return               Floating Point Status/Control register value
-N */
-N__STATIC_INLINE uint32_t __get_FPSCR(void)
-Xstatic __inline uint32_t __get_FPSCR(void)
-N{
-N#if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) && \
-N     (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
-X#if ((0L && (__FPU_PRESENT == 1U)) &&      (1L && (0U    == 1U))     )
+N#if ((defined (__ARM_ARCH_7EM__) && (__ARM_ARCH_7EM__ == 1))     )
+X#if ((0L && (__ARM_ARCH_7EM__ == 1))     )
+S
+S/**
+S  \brief   Get FPSCR
+S  \details Returns the current value of the Floating Point Status/Control register.
+S  \return               Floating Point Status/Control register value
+S */
+S__STATIC_INLINE uint32_t __get_FPSCR(void)
+S{
+S#if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) && \
+S     (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
+X#if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) &&      (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
 S  register uint32_t __regfpscr         __ASM("fpscr");
 S  return(__regfpscr);
-N#else
-N   return(0U);
-N#endif
-N}
-N
-N
-N/**
-N  \brief   Set FPSCR
-N  \details Assigns the given value to the Floating Point Status/Control register.
-N  \param [in]    fpscr  Floating Point Status/Control value to set
-N */
-N__STATIC_INLINE void __set_FPSCR(uint32_t fpscr)
-Xstatic __inline void __set_FPSCR(uint32_t fpscr)
-N{
-N#if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) && \
-N     (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
-X#if ((0L && (__FPU_PRESENT == 1U)) &&      (1L && (0U    == 1U))     )
+S#else
+S   return(0U);
+S#endif
+S}
+S
+S
+S/**
+S  \brief   Set FPSCR
+S  \details Assigns the given value to the Floating Point Status/Control register.
+S  \param [in]    fpscr  Floating Point Status/Control value to set
+S */
+S__STATIC_INLINE void __set_FPSCR(uint32_t fpscr)
+S{
+S#if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) && \
+S     (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
+X#if ((defined (__FPU_PRESENT) && (__FPU_PRESENT == 1U)) &&      (defined (__FPU_USED   ) && (__FPU_USED    == 1U))     )
 S  register uint32_t __regfpscr         __ASM("fpscr");
 S  __regfpscr = (fpscr);
-N#else
-N  (void)fpscr;
-N#endif
-N}
+S#else
+S  (void)fpscr;
+S#endif
+S}
+S
+N#endif /* ((defined (__ARM_ARCH_7EM__) && (__ARM_ARCH_7EM__ == 1))     ) */
+N
 N
 N
 N/*@} end of CMSIS_Core_RegAccFunctions */
@@ -1119,10 +1071,9 @@ N                   __schedule_barrier();\
 N                } while (0U)
 X#define __DMB() do {                   __schedule_barrier();                   __dmb(0xF);                   __schedule_barrier();                } while (0U)
 N
-N                  
 N/**
 N  \brief   Reverse byte order (32 bit)
-N  \details Reverses the byte order in unsigned integer value. For example, 0x12345678 becomes 0x78563412.
+N  \details Reverses the byte order in integer value.
 N  \param [in]    value  Value to reverse
 N  \return               Reversed value
 N */
@@ -1131,7 +1082,7 @@ N
 N
 N/**
 N  \brief   Reverse byte order (16 bit)
-N  \details Reverses the byte order within each halfword of a word. For example, 0x12345678 becomes 0x34127856.
+N  \details Reverses the byte order in two unsigned short values.
 N  \param [in]    value  Value to reverse
 N  \return               Reversed value
 N */
@@ -1146,14 +1097,14 @@ N#endif
 N
 N
 N/**
-N  \brief   Reverse byte order (16 bit)
-N  \details Reverses the byte order in a 16-bit value and returns the signed 16-bit result. For example, 0x0080 becomes 0x8000.
+N  \brief   Reverse byte order in signed short value
+N  \details Reverses the byte order in a signed short value with sign extension to integer.
 N  \param [in]    value  Value to reverse
 N  \return               Reversed value
 N */
 N#ifndef __NO_EMBEDDED_ASM
-N__attribute__((section(".revsh_text"))) __STATIC_INLINE __ASM int16_t __REVSH(int16_t value)
-X__attribute__((section(".revsh_text"))) static __inline __asm int16_t __REVSH(int16_t value)
+N__attribute__((section(".revsh_text"))) __STATIC_INLINE __ASM int32_t __REVSH(int32_t value)
+X__attribute__((section(".revsh_text"))) static __inline __asm int32_t __REVSH(int32_t value)
 N{
 N  revsh r0, r0
 N  bx lr
@@ -1195,17 +1146,17 @@ N#else
 S__attribute__((always_inline)) __STATIC_INLINE uint32_t __RBIT(uint32_t value)
 S{
 S  uint32_t result;
-S  uint32_t s = (4U /*sizeof(v)*/ * 8U) - 1U; /* extra shift needed at end */
+S  int32_t s = (4 /*sizeof(v)*/ * 8) - 1; /* extra shift needed at end */
 S
 S  result = value;                      /* r will be reversed bits of v; first get LSB of v */
-S  for (value >>= 1U; value != 0U; value >>= 1U)
+S  for (value >>= 1U; value; value >>= 1U)
 S  {
 S    result <<= 1U;
 S    result |= value & 1U;
 S    s--;
 S  }
 S  result <<= s;                        /* shift when v's highest bits are zero */
-S  return result;
+S  return(result);
 S}
 N#endif
 N
@@ -1230,7 +1181,7 @@ N  \param [in]    ptr  Pointer to data
 N  \return             value of type uint8_t at (*ptr)
 N */
 N#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
-X#if 1L && (5060750 < 5060020)
+X#if 1L && (5060528 < 5060020)
 S  #define __LDREXB(ptr)                                                        ((uint8_t ) __ldrex(ptr))
 N#else
 N  #define __LDREXB(ptr)          _Pragma("push") _Pragma("diag_suppress 3731") ((uint8_t ) __ldrex(ptr))  _Pragma("pop")
@@ -1244,7 +1195,7 @@ N  \param [in]    ptr  Pointer to data
 N  \return        value of type uint16_t at (*ptr)
 N */
 N#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
-X#if 1L && (5060750 < 5060020)
+X#if 1L && (5060528 < 5060020)
 S  #define __LDREXH(ptr)                                                        ((uint16_t) __ldrex(ptr))
 N#else
 N  #define __LDREXH(ptr)          _Pragma("push") _Pragma("diag_suppress 3731") ((uint16_t) __ldrex(ptr))  _Pragma("pop")
@@ -1258,7 +1209,7 @@ N  \param [in]    ptr  Pointer to data
 N  \return        value of type uint32_t at (*ptr)
 N */
 N#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
-X#if 1L && (5060750 < 5060020)
+X#if 1L && (5060528 < 5060020)
 S  #define __LDREXW(ptr)                                                        ((uint32_t ) __ldrex(ptr))
 N#else
 N  #define __LDREXW(ptr)          _Pragma("push") _Pragma("diag_suppress 3731") ((uint32_t ) __ldrex(ptr))  _Pragma("pop")
@@ -1274,7 +1225,7 @@ N  \return          0  Function succeeded
 N  \return          1  Function failed
 N */
 N#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
-X#if 1L && (5060750 < 5060020)
+X#if 1L && (5060528 < 5060020)
 S  #define __STREXB(value, ptr)                                                 __strex(value, ptr)
 N#else
 N  #define __STREXB(value, ptr)   _Pragma("push") _Pragma("diag_suppress 3731") __strex(value, ptr)        _Pragma("pop")
@@ -1290,7 +1241,7 @@ N  \return          0  Function succeeded
 N  \return          1  Function failed
 N */
 N#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
-X#if 1L && (5060750 < 5060020)
+X#if 1L && (5060528 < 5060020)
 S  #define __STREXH(value, ptr)                                                 __strex(value, ptr)
 N#else
 N  #define __STREXH(value, ptr)   _Pragma("push") _Pragma("diag_suppress 3731") __strex(value, ptr)        _Pragma("pop")
@@ -1306,7 +1257,7 @@ N  \return          0  Function succeeded
 N  \return          1  Function failed
 N */
 N#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION < 5060020)
-X#if 1L && (5060750 < 5060020)
+X#if 1L && (5060528 < 5060020)
 S  #define __STREXW(value, ptr)                                                 __strex(value, ptr)
 N#else
 N  #define __STREXW(value, ptr)   _Pragma("push") _Pragma("diag_suppress 3731") __strex(value, ptr)        _Pragma("pop")
@@ -1410,59 +1361,6 @@ N  \param [in]    ptr  Pointer to location
 N */
 N#define __STRT(value, ptr)                __strt(value, ptr)
 N
-N#else  /* ((defined (__ARM_ARCH_7M__ ) && (__ARM_ARCH_7M__  == 1)) || \
-N           (defined (__ARM_ARCH_7EM__) && (__ARM_ARCH_7EM__ == 1))     ) */
-X#else   
-S
-S/**
-S  \brief   Signed Saturate
-S  \details Saturates a signed value.
-S  \param [in]  value  Value to be saturated
-S  \param [in]    sat  Bit position to saturate to (1..32)
-S  \return             Saturated value
-S */
-S__attribute__((always_inline)) __STATIC_INLINE int32_t __SSAT(int32_t val, uint32_t sat)
-S{
-S  if ((sat >= 1U) && (sat <= 32U))
-S  {
-S    const int32_t max = (int32_t)((1U << (sat - 1U)) - 1U);
-S    const int32_t min = -1 - max ;
-S    if (val > max)
-S    {
-S      return max;
-S    }
-S    else if (val < min)
-S    {
-S      return min;
-S    }
-S  }
-S  return val;
-S}
-S
-S/**
-S  \brief   Unsigned Saturate
-S  \details Saturates an unsigned value.
-S  \param [in]  value  Value to be saturated
-S  \param [in]    sat  Bit position to saturate to (0..31)
-S  \return             Saturated value
-S */
-S__attribute__((always_inline)) __STATIC_INLINE uint32_t __USAT(int32_t val, uint32_t sat)
-S{
-S  if (sat <= 31U)
-S  {
-S    const uint32_t max = ((1U << sat) - 1U);
-S    if (val > (int32_t)max)
-S    {
-S      return max;
-S    }
-S    else if (val < 0)
-S    {
-S      return 0U;
-S    }
-S  }
-S  return (uint32_t)val;
-S}
-S
 N#endif /* ((defined (__ARM_ARCH_7M__ ) && (__ARM_ARCH_7M__  == 1)) || \
 N           (defined (__ARM_ARCH_7EM__) && (__ARM_ARCH_7EM__ == 1))     ) */
 X#endif  
@@ -1556,19 +1454,13 @@ N/*@} end of group CMSIS_SIMD_intrinsics */
 N
 N
 N#endif /* __CMSIS_ARMCC_H */
-L 35 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\cmsis_compiler.h" 2
+L 35 "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\cmsis_compiler.h" 2
 N
 N
 N/*
-N * Arm Compiler 6.6 LTM (armclang)
+N * ARM Compiler 6 (armclang)
 N */
-N#elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050) && (__ARMCC_VERSION < 6100100)
-S  #include "cmsis_armclang_ltm.h"
-S
-S  /*
-S * Arm Compiler above 6.10.1 (armclang)
-S */
-S#elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6100100)
+N#elif defined (__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
 S  #include "cmsis_armclang.h"
 S
 S
@@ -1583,70 +1475,80 @@ S/*
 S * IAR Compiler
 S */
 S#elif defined ( __ICCARM__ )
-S  #include <cmsis_iccarm.h>
+S
+S  #ifndef   __ASM
+S    #define __ASM                     __asm
+S  #endif
+S  #ifndef   __INLINE
+S    #define __INLINE                  inline
+S  #endif
+S  #ifndef   __STATIC_INLINE
+S    #define __STATIC_INLINE           static inline
+S  #endif
+S
+S  #include <cmsis_iar.h>
+S
+S  #ifndef   __NO_RETURN
+S    #define __NO_RETURN               __noreturn
+S  #endif
+S  #ifndef   __USED
+S    #define __USED                    __root
+S  #endif
+S  #ifndef   __WEAK
+S    #define __WEAK                    __weak
+S  #endif
+S  #ifndef   __UNALIGNED_UINT32
+S    __packed struct T_UINT32 { uint32_t v; };
+S      #define __UNALIGNED_UINT32(x)     (((struct T_UINT32 *)(x))->v)
+S  #endif
+S  #ifndef   __ALIGNED
+S    #warning No compiler specific solution for __ALIGNED. __ALIGNED is ignored.
+S    #define __ALIGNED(x)
+S  #endif
+S  #ifndef   __PACKED
+S    #define __PACKED                  __packed
+S  #endif
+S  #ifndef   __PACKED_STRUCT
+S    #define __PACKED_STRUCT           __packed struct
+S  #endif
 S
 S
 S/*
-S * TI Arm Compiler
+S * TI ARM Compiler
 S */
 S#elif defined ( __TI_ARM__ )
 S  #include <cmsis_ccs.h>
 S
 S  #ifndef   __ASM
-S    #define __ASM                                  __asm
+S    #define __ASM                     __asm
 S  #endif
 S  #ifndef   __INLINE
-S    #define __INLINE                               inline
+S    #define __INLINE                  inline
 S  #endif
 S  #ifndef   __STATIC_INLINE
-S    #define __STATIC_INLINE                        static inline
-S  #endif
-S  #ifndef   __STATIC_FORCEINLINE
-S    #define __STATIC_FORCEINLINE                   __STATIC_INLINE
+S    #define __STATIC_INLINE           static inline
 S  #endif
 S  #ifndef   __NO_RETURN
-S    #define __NO_RETURN                            __attribute__((noreturn))
+S    #define __NO_RETURN               __attribute__((noreturn))
 S  #endif
 S  #ifndef   __USED
-S    #define __USED                                 __attribute__((used))
+S    #define __USED                    __attribute__((used))
 S  #endif
 S  #ifndef   __WEAK
-S    #define __WEAK                                 __attribute__((weak))
+S    #define __WEAK                    __attribute__((weak))
 S  #endif
-S  #ifndef   __PACKED
-S    #define __PACKED                               __attribute__((packed))
-S  #endif
-S  #ifndef   __PACKED_STRUCT
-S    #define __PACKED_STRUCT                        struct __attribute__((packed))
-S  #endif
-S  #ifndef   __PACKED_UNION
-S    #define __PACKED_UNION                         union __attribute__((packed))
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32        /* deprecated */
+S  #ifndef   __UNALIGNED_UINT32
 S    struct __attribute__((packed)) T_UINT32 { uint32_t v; };
-S    #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
-S  #endif
-S  #ifndef   __UNALIGNED_UINT16_WRITE
-S    __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
-S    #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void*)(addr))->v) = (val))
-S  #endif
-S  #ifndef   __UNALIGNED_UINT16_READ
-S    __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
-S    #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(addr))->v)
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32_WRITE
-S    __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
-S    #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))->v) = (val))
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32_READ
-S    __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
-S    #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(addr))->v)
+S    #define __UNALIGNED_UINT32(x)     (((struct T_UINT32 *)(x))->v)
 S  #endif
 S  #ifndef   __ALIGNED
-S    #define __ALIGNED(x)                           __attribute__((aligned(x)))
+S    #define __ALIGNED(x)              __attribute__((aligned(x)))
 S  #endif
-S  #ifndef   __RESTRICT
-S    #define __RESTRICT                             __restrict
+S  #ifndef   __PACKED
+S    #define __PACKED                  __attribute__((packed))
+S  #endif
+S  #ifndef   __PACKED_STRUCT
+S    #define __PACKED_STRUCT           struct __attribute__((packed))
 S  #endif
 S
 S
@@ -1661,61 +1563,35 @@ S   * Including the CMSIS ones.
 S   */
 S
 S  #ifndef   __ASM
-S    #define __ASM                                  __asm
+S    #define __ASM                     __asm
 S  #endif
 S  #ifndef   __INLINE
-S    #define __INLINE                               inline
+S    #define __INLINE                  inline
 S  #endif
 S  #ifndef   __STATIC_INLINE
-S    #define __STATIC_INLINE                        static inline
-S  #endif
-S  #ifndef   __STATIC_FORCEINLINE
-S    #define __STATIC_FORCEINLINE                   __STATIC_INLINE
+S    #define __STATIC_INLINE           static inline
 S  #endif
 S  #ifndef   __NO_RETURN
-S    #define __NO_RETURN                            __attribute__((noreturn))
+S    #define __NO_RETURN               __attribute__((noreturn))
 S  #endif
 S  #ifndef   __USED
-S    #define __USED                                 __attribute__((used))
+S    #define __USED                    __attribute__((used))
 S  #endif
 S  #ifndef   __WEAK
-S    #define __WEAK                                 __attribute__((weak))
+S    #define __WEAK                    __attribute__((weak))
 S  #endif
-S  #ifndef   __PACKED
-S    #define __PACKED                               __packed__
-S  #endif
-S  #ifndef   __PACKED_STRUCT
-S    #define __PACKED_STRUCT                        struct __packed__
-S  #endif
-S  #ifndef   __PACKED_UNION
-S    #define __PACKED_UNION                         union __packed__
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32        /* deprecated */
+S  #ifndef   __UNALIGNED_UINT32
 S    struct __packed__ T_UINT32 { uint32_t v; };
-S    #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
-S  #endif
-S  #ifndef   __UNALIGNED_UINT16_WRITE
-S    __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
-S    #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))->v) = (val))
-S  #endif
-S  #ifndef   __UNALIGNED_UINT16_READ
-S    __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
-S    #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(addr))->v)
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32_WRITE
-S    __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
-S    #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))->v) = (val))
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32_READ
-S    __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
-S    #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(addr))->v)
+S    #define __UNALIGNED_UINT32(x)     (((struct T_UINT32 *)(x))->v)
 S  #endif
 S  #ifndef   __ALIGNED
 S    #define __ALIGNED(x)              __align(x)
 S  #endif
-S  #ifndef   __RESTRICT
-S    #warning No compiler specific solution for __RESTRICT. __RESTRICT is ignored.
-S    #define __RESTRICT
+S  #ifndef   __PACKED
+S    #define __PACKED                  __packed__
+S  #endif
+S  #ifndef   __PACKED_STRUCT
+S    #define __PACKED_STRUCT           struct __packed__
 S  #endif
 S
 S
@@ -1726,16 +1602,13 @@ S#elif defined ( __CSMC__ )
 S   #include <cmsis_csm.h>
 S
 S #ifndef   __ASM
-S    #define __ASM                                  _asm
+S    #define __ASM                     _asm
 S  #endif
 S  #ifndef   __INLINE
-S    #define __INLINE                               inline
+S    #define __INLINE                  inline
 S  #endif
 S  #ifndef   __STATIC_INLINE
-S    #define __STATIC_INLINE                        static inline
-S  #endif
-S  #ifndef   __STATIC_FORCEINLINE
-S    #define __STATIC_FORCEINLINE                   __STATIC_INLINE
+S    #define __STATIC_INLINE           static inline
 S  #endif
 S  #ifndef   __NO_RETURN
 S    // NO RETURN is automatically detected hence no warning here
@@ -1746,44 +1619,21 @@ S    #warning No compiler specific solution for __USED. __USED is ignored.
 S    #define __USED
 S  #endif
 S  #ifndef   __WEAK
-S    #define __WEAK                                 __weak
+S    #define __WEAK                    __weak
 S  #endif
-S  #ifndef   __PACKED
-S    #define __PACKED                               @packed
-S  #endif
-S  #ifndef   __PACKED_STRUCT
-S    #define __PACKED_STRUCT                        @packed struct
-S  #endif
-S  #ifndef   __PACKED_UNION
-S    #define __PACKED_UNION                         @packed union
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32        /* deprecated */
+S  #ifndef   __UNALIGNED_UINT32
 S    @packed struct T_UINT32 { uint32_t v; };
-S    #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
-S  #endif
-S  #ifndef   __UNALIGNED_UINT16_WRITE
-S    __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
-S    #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))->v) = (val))
-S  #endif
-S  #ifndef   __UNALIGNED_UINT16_READ
-S    __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
-S    #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(addr))->v)
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32_WRITE
-S    __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
-S    #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))->v) = (val))
-S  #endif
-S  #ifndef   __UNALIGNED_UINT32_READ
-S    __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
-S    #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(addr))->v)
+S    #define __UNALIGNED_UINT32(x)     (((struct T_UINT32 *)(x))->v)
 S  #endif
 S  #ifndef   __ALIGNED
 S    #warning No compiler specific solution for __ALIGNED. __ALIGNED is ignored.
 S    #define __ALIGNED(x)
 S  #endif
-S  #ifndef   __RESTRICT
-S    #warning No compiler specific solution for __RESTRICT. __RESTRICT is ignored.
-S    #define __RESTRICT
+S  #ifndef   __PACKED
+S    #define __PACKED                  @packed
+S  #endif
+S  #ifndef   __PACKED_STRUCT
+S    #define __PACKED_STRUCT           @packed struct
 S  #endif
 S
 S
@@ -1794,7 +1644,7 @@ N
 N
 N#endif /* __CMSIS_COMPILER_H */
 N
-L 116 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h" 2
+L 114 "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm3.h" 2
 N
 N
 N#ifdef __cplusplus
@@ -2027,7 +1877,7 @@ X  volatile uint32_t ISER[8U];
 N        uint32_t RESERVED0[24U];
 N  __IOM uint32_t ICER[8U];               /*!< Offset: 0x080 (R/W)  Interrupt Clear Enable Register */
 X  volatile uint32_t ICER[8U];                
-N        uint32_t RESERVED1[24U];
+N        uint32_t RSERVED1[24U];
 N  __IOM uint32_t ISPR[8U];               /*!< Offset: 0x100 (R/W)  Interrupt Set Pending Register */
 X  volatile uint32_t ISPR[8U];                
 N        uint32_t RESERVED2[24U];
@@ -2381,23 +2231,15 @@ N#define SCnSCB_ICTR_INTLINESNUM_Pos         0U                                 
 N#define SCnSCB_ICTR_INTLINESNUM_Msk        (0xFUL /*<< SCnSCB_ICTR_INTLINESNUM_Pos*/)  /*!< ICTR: INTLINESNUM Mask */
 N
 N/* Auxiliary Control Register Definitions */
-N#if defined (__CM3_REV) && (__CM3_REV >= 0x200U)
-X#if 1L && (0x0102 >= 0x200U)
-S#define SCnSCB_ACTLR_DISOOFP_Pos            9U                                         /*!< ACTLR: DISOOFP Position */
-S#define SCnSCB_ACTLR_DISOOFP_Msk           (1UL << SCnSCB_ACTLR_DISOOFP_Pos)           /*!< ACTLR: DISOOFP Mask */
-S
-S#define SCnSCB_ACTLR_DISFPCA_Pos            8U                                         /*!< ACTLR: DISFPCA Position */
-S#define SCnSCB_ACTLR_DISFPCA_Msk           (1UL << SCnSCB_ACTLR_DISFPCA_Pos)           /*!< ACTLR: DISFPCA Mask */
-S
-S#define SCnSCB_ACTLR_DISFOLD_Pos            2U                                         /*!< ACTLR: DISFOLD Position */
-S#define SCnSCB_ACTLR_DISFOLD_Msk           (1UL << SCnSCB_ACTLR_DISFOLD_Pos)           /*!< ACTLR: DISFOLD Mask */
-S
-S#define SCnSCB_ACTLR_DISDEFWBUF_Pos         1U                                         /*!< ACTLR: DISDEFWBUF Position */
-S#define SCnSCB_ACTLR_DISDEFWBUF_Msk        (1UL << SCnSCB_ACTLR_DISDEFWBUF_Pos)        /*!< ACTLR: DISDEFWBUF Mask */
-S
-S#define SCnSCB_ACTLR_DISMCYCINT_Pos         0U                                         /*!< ACTLR: DISMCYCINT Position */
-S#define SCnSCB_ACTLR_DISMCYCINT_Msk        (1UL /*<< SCnSCB_ACTLR_DISMCYCINT_Pos*/)    /*!< ACTLR: DISMCYCINT Mask */
-N#endif
+N
+N#define SCnSCB_ACTLR_DISFOLD_Pos            2U                                         /*!< ACTLR: DISFOLD Position */
+N#define SCnSCB_ACTLR_DISFOLD_Msk           (1UL << SCnSCB_ACTLR_DISFOLD_Pos)           /*!< ACTLR: DISFOLD Mask */
+N
+N#define SCnSCB_ACTLR_DISDEFWBUF_Pos         1U                                         /*!< ACTLR: DISDEFWBUF Position */
+N#define SCnSCB_ACTLR_DISDEFWBUF_Msk        (1UL << SCnSCB_ACTLR_DISDEFWBUF_Pos)        /*!< ACTLR: DISDEFWBUF Mask */
+N
+N#define SCnSCB_ACTLR_DISMCYCINT_Pos         0U                                         /*!< ACTLR: DISMCYCINT Position */
+N#define SCnSCB_ACTLR_DISMCYCINT_Msk        (1UL /*<< SCnSCB_ACTLR_DISMCYCINT_Pos*/)    /*!< ACTLR: DISMCYCINT Mask */
 N
 N/*@} end of group CMSIS_SCnotSCB */
 N
@@ -2489,7 +2331,13 @@ X  volatile uint32_t TPR;
 N        uint32_t RESERVED2[15U];
 N  __IOM uint32_t TCR;                    /*!< Offset: 0xE80 (R/W)  ITM Trace Control Register */
 X  volatile uint32_t TCR;                     
-N        uint32_t RESERVED3[32U];
+N        uint32_t RESERVED3[29U];
+N  __OM  uint32_t IWR;                    /*!< Offset: 0xEF8 ( /W)  ITM Integration Write Register */
+X  volatile  uint32_t IWR;                     
+N  __IM  uint32_t IRR;                    /*!< Offset: 0xEFC (R/ )  ITM Integration Read Register */
+X  volatile const  uint32_t IRR;                     
+N  __IOM uint32_t IMCR;                   /*!< Offset: 0xF00 (R/W)  ITM Integration Mode Control Register */
+X  volatile uint32_t IMCR;                    
 N        uint32_t RESERVED4[43U];
 N  __OM  uint32_t LAR;                    /*!< Offset: 0xFB0 ( /W)  ITM Lock Access Register */
 X  volatile  uint32_t LAR;                     
@@ -2524,7 +2372,7 @@ N} ITM_Type;
 N
 N/* ITM Trace Privilege Register Definitions */
 N#define ITM_TPR_PRIVMASK_Pos                0U                                            /*!< ITM TPR: PRIVMASK Position */
-N#define ITM_TPR_PRIVMASK_Msk               (0xFFFFFFFFUL /*<< ITM_TPR_PRIVMASK_Pos*/)     /*!< ITM TPR: PRIVMASK Mask */
+N#define ITM_TPR_PRIVMASK_Msk               (0xFUL /*<< ITM_TPR_PRIVMASK_Pos*/)            /*!< ITM TPR: PRIVMASK Mask */
 N
 N/* ITM Trace Control Register Definitions */
 N#define ITM_TCR_BUSY_Pos                   23U                                            /*!< ITM TCR: BUSY Position */
@@ -2553,6 +2401,18 @@ N#define ITM_TCR_TSENA_Msk                  (1UL << ITM_TCR_TSENA_Pos)          
 N
 N#define ITM_TCR_ITMENA_Pos                  0U                                            /*!< ITM TCR: ITM Enable bit Position */
 N#define ITM_TCR_ITMENA_Msk                 (1UL /*<< ITM_TCR_ITMENA_Pos*/)                /*!< ITM TCR: ITM Enable bit Mask */
+N
+N/* ITM Integration Write Register Definitions */
+N#define ITM_IWR_ATVALIDM_Pos                0U                                            /*!< ITM IWR: ATVALIDM Position */
+N#define ITM_IWR_ATVALIDM_Msk               (1UL /*<< ITM_IWR_ATVALIDM_Pos*/)              /*!< ITM IWR: ATVALIDM Mask */
+N
+N/* ITM Integration Read Register Definitions */
+N#define ITM_IRR_ATREADYM_Pos                0U                                            /*!< ITM IRR: ATREADYM Position */
+N#define ITM_IRR_ATREADYM_Msk               (1UL /*<< ITM_IRR_ATREADYM_Pos*/)              /*!< ITM IRR: ATREADYM Mask */
+N
+N/* ITM Integration Mode Control Register Definitions */
+N#define ITM_IMCR_INTEGRATION_Pos            0U                                            /*!< ITM IMCR: INTEGRATION Position */
+N#define ITM_IMCR_INTEGRATION_Msk           (1UL /*<< ITM_IMCR_INTEGRATION_Pos*/)          /*!< ITM IMCR: INTEGRATION Mask */
 N
 N/* ITM Lock Status Register Definitions */
 N#define ITM_LSR_ByteAcc_Pos                 2U                                            /*!< ITM LSR: ByteAcc Position */
@@ -2746,8 +2606,8 @@ N  \brief  Structure type to access the Trace Port Interface Register (TPI).
 N */
 Ntypedef struct
 N{
-N  __IM  uint32_t SSPSR;                  /*!< Offset: 0x000 (R/ )  Supported Parallel Port Size Register */
-X  volatile const  uint32_t SSPSR;                   
+N  __IOM uint32_t SSPSR;                  /*!< Offset: 0x000 (R/ )  Supported Parallel Port Size Register */
+X  volatile uint32_t SSPSR;                   
 N  __IOM uint32_t CSPSR;                  /*!< Offset: 0x004 (R/W)  Current Parallel Port Size Register */
 X  volatile uint32_t CSPSR;                   
 N        uint32_t RESERVED0[2U];
@@ -2764,7 +2624,7 @@ X  volatile uint32_t FFCR;
 N  __IM  uint32_t FSCR;                   /*!< Offset: 0x308 (R/ )  Formatter Synchronization Counter Register */
 X  volatile const  uint32_t FSCR;                    
 N        uint32_t RESERVED3[759U];
-N  __IM  uint32_t TRIGGER;                /*!< Offset: 0xEE8 (R/ )  TRIGGER Register */
+N  __IM  uint32_t TRIGGER;                /*!< Offset: 0xEE8 (R/ )  TRIGGER */
 X  volatile const  uint32_t TRIGGER;                 
 N  __IM  uint32_t FIFO0;                  /*!< Offset: 0xEEC (R/ )  Integration ETM Data */
 X  volatile const  uint32_t FIFO0;                   
@@ -2823,13 +2683,13 @@ N#define TPI_TRIGGER_TRIGGER_Msk            (0x1UL /*<< TPI_TRIGGER_TRIGGER_Pos*
 N
 N/* TPI Integration ETM Data Register Definitions (FIFO0) */
 N#define TPI_FIFO0_ITM_ATVALID_Pos          29U                                         /*!< TPI FIFO0: ITM_ATVALID Position */
-N#define TPI_FIFO0_ITM_ATVALID_Msk          (0x1UL << TPI_FIFO0_ITM_ATVALID_Pos)        /*!< TPI FIFO0: ITM_ATVALID Mask */
+N#define TPI_FIFO0_ITM_ATVALID_Msk          (0x3UL << TPI_FIFO0_ITM_ATVALID_Pos)        /*!< TPI FIFO0: ITM_ATVALID Mask */
 N
 N#define TPI_FIFO0_ITM_bytecount_Pos        27U                                         /*!< TPI FIFO0: ITM_bytecount Position */
 N#define TPI_FIFO0_ITM_bytecount_Msk        (0x3UL << TPI_FIFO0_ITM_bytecount_Pos)      /*!< TPI FIFO0: ITM_bytecount Mask */
 N
 N#define TPI_FIFO0_ETM_ATVALID_Pos          26U                                         /*!< TPI FIFO0: ETM_ATVALID Position */
-N#define TPI_FIFO0_ETM_ATVALID_Msk          (0x1UL << TPI_FIFO0_ETM_ATVALID_Pos)        /*!< TPI FIFO0: ETM_ATVALID Mask */
+N#define TPI_FIFO0_ETM_ATVALID_Msk          (0x3UL << TPI_FIFO0_ETM_ATVALID_Pos)        /*!< TPI FIFO0: ETM_ATVALID Mask */
 N
 N#define TPI_FIFO0_ETM_bytecount_Pos        24U                                         /*!< TPI FIFO0: ETM_bytecount Position */
 N#define TPI_FIFO0_ETM_bytecount_Msk        (0x3UL << TPI_FIFO0_ETM_bytecount_Pos)      /*!< TPI FIFO0: ETM_bytecount Mask */
@@ -2844,21 +2704,18 @@ N#define TPI_FIFO0_ETM0_Pos                  0U                                 
 N#define TPI_FIFO0_ETM0_Msk                 (0xFFUL /*<< TPI_FIFO0_ETM0_Pos*/)          /*!< TPI FIFO0: ETM0 Mask */
 N
 N/* TPI ITATBCTR2 Register Definitions */
-N#define TPI_ITATBCTR2_ATREADY2_Pos          0U                                         /*!< TPI ITATBCTR2: ATREADY2 Position */
-N#define TPI_ITATBCTR2_ATREADY2_Msk         (0x1UL /*<< TPI_ITATBCTR2_ATREADY2_Pos*/)   /*!< TPI ITATBCTR2: ATREADY2 Mask */
-N
-N#define TPI_ITATBCTR2_ATREADY1_Pos          0U                                         /*!< TPI ITATBCTR2: ATREADY1 Position */
-N#define TPI_ITATBCTR2_ATREADY1_Msk         (0x1UL /*<< TPI_ITATBCTR2_ATREADY1_Pos*/)   /*!< TPI ITATBCTR2: ATREADY1 Mask */
+N#define TPI_ITATBCTR2_ATREADY_Pos           0U                                         /*!< TPI ITATBCTR2: ATREADY Position */
+N#define TPI_ITATBCTR2_ATREADY_Msk          (0x1UL /*<< TPI_ITATBCTR2_ATREADY_Pos*/)    /*!< TPI ITATBCTR2: ATREADY Mask */
 N
 N/* TPI Integration ITM Data Register Definitions (FIFO1) */
 N#define TPI_FIFO1_ITM_ATVALID_Pos          29U                                         /*!< TPI FIFO1: ITM_ATVALID Position */
-N#define TPI_FIFO1_ITM_ATVALID_Msk          (0x1UL << TPI_FIFO1_ITM_ATVALID_Pos)        /*!< TPI FIFO1: ITM_ATVALID Mask */
+N#define TPI_FIFO1_ITM_ATVALID_Msk          (0x3UL << TPI_FIFO1_ITM_ATVALID_Pos)        /*!< TPI FIFO1: ITM_ATVALID Mask */
 N
 N#define TPI_FIFO1_ITM_bytecount_Pos        27U                                         /*!< TPI FIFO1: ITM_bytecount Position */
 N#define TPI_FIFO1_ITM_bytecount_Msk        (0x3UL << TPI_FIFO1_ITM_bytecount_Pos)      /*!< TPI FIFO1: ITM_bytecount Mask */
 N
 N#define TPI_FIFO1_ETM_ATVALID_Pos          26U                                         /*!< TPI FIFO1: ETM_ATVALID Position */
-N#define TPI_FIFO1_ETM_ATVALID_Msk          (0x1UL << TPI_FIFO1_ETM_ATVALID_Pos)        /*!< TPI FIFO1: ETM_ATVALID Mask */
+N#define TPI_FIFO1_ETM_ATVALID_Msk          (0x3UL << TPI_FIFO1_ETM_ATVALID_Pos)        /*!< TPI FIFO1: ETM_ATVALID Mask */
 N
 N#define TPI_FIFO1_ETM_bytecount_Pos        24U                                         /*!< TPI FIFO1: ETM_bytecount Position */
 N#define TPI_FIFO1_ETM_bytecount_Msk        (0x3UL << TPI_FIFO1_ETM_bytecount_Pos)      /*!< TPI FIFO1: ETM_bytecount Mask */
@@ -2873,15 +2730,12 @@ N#define TPI_FIFO1_ITM0_Pos                  0U                                 
 N#define TPI_FIFO1_ITM0_Msk                 (0xFFUL /*<< TPI_FIFO1_ITM0_Pos*/)          /*!< TPI FIFO1: ITM0 Mask */
 N
 N/* TPI ITATBCTR0 Register Definitions */
-N#define TPI_ITATBCTR0_ATREADY2_Pos          0U                                         /*!< TPI ITATBCTR0: ATREADY2 Position */
-N#define TPI_ITATBCTR0_ATREADY2_Msk         (0x1UL /*<< TPI_ITATBCTR0_ATREADY2_Pos*/)   /*!< TPI ITATBCTR0: ATREADY2 Mask */
-N
-N#define TPI_ITATBCTR0_ATREADY1_Pos          0U                                         /*!< TPI ITATBCTR0: ATREADY1 Position */
-N#define TPI_ITATBCTR0_ATREADY1_Msk         (0x1UL /*<< TPI_ITATBCTR0_ATREADY1_Pos*/)   /*!< TPI ITATBCTR0: ATREADY1 Mask */
+N#define TPI_ITATBCTR0_ATREADY_Pos           0U                                         /*!< TPI ITATBCTR0: ATREADY Position */
+N#define TPI_ITATBCTR0_ATREADY_Msk          (0x1UL /*<< TPI_ITATBCTR0_ATREADY_Pos*/)    /*!< TPI ITATBCTR0: ATREADY Mask */
 N
 N/* TPI Integration Mode Control Register Definitions */
 N#define TPI_ITCTRL_Mode_Pos                 0U                                         /*!< TPI ITCTRL: Mode Position */
-N#define TPI_ITCTRL_Mode_Msk                (0x3UL /*<< TPI_ITCTRL_Mode_Pos*/)          /*!< TPI ITCTRL: Mode Mask */
+N#define TPI_ITCTRL_Mode_Msk                (0x1UL /*<< TPI_ITCTRL_Mode_Pos*/)          /*!< TPI ITCTRL: Mode Mask */
 N
 N/* TPI DEVID Register Definitions */
 N#define TPI_DEVID_NRZVALID_Pos             11U                                         /*!< TPI DEVID: NRZVALID Position */
@@ -2903,11 +2757,11 @@ N#define TPI_DEVID_NrTraceInput_Pos          0U                                 
 N#define TPI_DEVID_NrTraceInput_Msk         (0x1FUL /*<< TPI_DEVID_NrTraceInput_Pos*/)  /*!< TPI DEVID: NrTraceInput Mask */
 N
 N/* TPI DEVTYPE Register Definitions */
-N#define TPI_DEVTYPE_SubType_Pos             4U                                         /*!< TPI DEVTYPE: SubType Position */
-N#define TPI_DEVTYPE_SubType_Msk            (0xFUL /*<< TPI_DEVTYPE_SubType_Pos*/)      /*!< TPI DEVTYPE: SubType Mask */
-N
-N#define TPI_DEVTYPE_MajorType_Pos           0U                                         /*!< TPI DEVTYPE: MajorType Position */
+N#define TPI_DEVTYPE_MajorType_Pos           4U                                         /*!< TPI DEVTYPE: MajorType Position */
 N#define TPI_DEVTYPE_MajorType_Msk          (0xFUL << TPI_DEVTYPE_MajorType_Pos)        /*!< TPI DEVTYPE: MajorType Mask */
+N
+N#define TPI_DEVTYPE_SubType_Pos             0U                                         /*!< TPI DEVTYPE: SubType Position */
+N#define TPI_DEVTYPE_SubType_Msk            (0xFUL /*<< TPI_DEVTYPE_SubType_Pos*/)      /*!< TPI DEVTYPE: SubType Mask */
 N
 N/*@}*/ /* end of group CMSIS_TPI */
 N
@@ -2949,8 +2803,6 @@ X  volatile uint32_t RBAR_A3;
 N  __IOM uint32_t RASR_A3;                /*!< Offset: 0x028 (R/W)  MPU Alias 3 Region Attribute and Size Register */
 X  volatile uint32_t RASR_A3;                 
 N} MPU_Type;
-N
-N#define MPU_TYPE_RALIASES                  4U
 N
 N/* MPU Type Register Definitions */
 N#define MPU_TYPE_IREGION_Pos               16U                                            /*!< MPU TYPE: IREGION Position */
@@ -3247,11 +3099,6 @@ N
 N#define NVIC_USER_IRQ_OFFSET          16
 N
 N
-N/* The following EXC_RETURN values are saved the LR on exception entry */
-N#define EXC_RETURN_HANDLER         (0xFFFFFFF1UL)     /* return to Handler mode, uses MSP after return                               */
-N#define EXC_RETURN_THREAD_MSP      (0xFFFFFFF9UL)     /* return to Thread mode, uses MSP after return                                */
-N#define EXC_RETURN_THREAD_PSP      (0xFFFFFFFDUL)     /* return to Thread mode, uses PSP after return                                */
-N
 N
 N/**
 N  \brief   Set Priority Grouping
@@ -3275,8 +3122,7 @@ X  reg_value &= ~((uint32_t)((0xFFFFUL << 16U) | (7UL << 8U)));
 N  reg_value  =  (reg_value                                   |
 N                ((uint32_t)0x5FAUL << SCB_AIRCR_VECTKEY_Pos) |
 X                ((uint32_t)0x5FAUL << 16U) |
-N                (PriorityGroupTmp << SCB_AIRCR_PRIGROUP_Pos) );               /* Insert write key and priority group */
-X                (PriorityGroupTmp << 8U) );                
+N                (PriorityGroupTmp << 8U)                      );              /* Insert write key and priorty group */
 N  SCB->AIRCR =  reg_value;
 X  ((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->AIRCR =  reg_value;
 N}
@@ -3306,8 +3152,8 @@ Xstatic __inline void __NVIC_EnableIRQ(IRQn_Type IRQn)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
-X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+N    NVIC->ISER[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISER[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
 N  }
 N}
 N
@@ -3325,8 +3171,8 @@ Xstatic __inline uint32_t __NVIC_GetEnableIRQ(IRQn_Type IRQn)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    return((uint32_t)(((NVIC->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
-X    return((uint32_t)(((((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISER[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+N    return((uint32_t)(((NVIC->ISER[(((uint32_t)(int32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+X    return((uint32_t)(((((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISER[(((uint32_t)(int32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
 N  }
 N  else
 N  {
@@ -3346,8 +3192,8 @@ Xstatic __inline void __NVIC_DisableIRQ(IRQn_Type IRQn)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    NVIC->ICER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
-X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ICER[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+N    NVIC->ICER[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ICER[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
 N    __DSB();
 X    do { __schedule_barrier(); __dsb(0xF); __schedule_barrier(); } while (0U);
 N    __ISB();
@@ -3369,8 +3215,8 @@ Xstatic __inline uint32_t __NVIC_GetPendingIRQ(IRQn_Type IRQn)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    return((uint32_t)(((NVIC->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
-X    return((uint32_t)(((((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISPR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+N    return((uint32_t)(((NVIC->ISPR[(((uint32_t)(int32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+X    return((uint32_t)(((((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISPR[(((uint32_t)(int32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
 N  }
 N  else
 N  {
@@ -3390,8 +3236,8 @@ Xstatic __inline void __NVIC_SetPendingIRQ(IRQn_Type IRQn)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    NVIC->ISPR[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
-X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISPR[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+N    NVIC->ISPR[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ISPR[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
 N  }
 N}
 N
@@ -3407,8 +3253,8 @@ Xstatic __inline void __NVIC_ClearPendingIRQ(IRQn_Type IRQn)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    NVIC->ICPR[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
-X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ICPR[(((uint32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)IRQn) & 0x1FUL));
+N    NVIC->ICPR[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
+X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->ICPR[(((uint32_t)(int32_t)IRQn) >> 5UL)] = (uint32_t)(1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL));
 N  }
 N}
 N
@@ -3426,8 +3272,8 @@ Xstatic __inline uint32_t __NVIC_GetActive(IRQn_Type IRQn)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    return((uint32_t)(((NVIC->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
-X    return((uint32_t)(((((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->IABR[(((uint32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+N    return((uint32_t)(((NVIC->IABR[(((uint32_t)(int32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
+X    return((uint32_t)(((((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->IABR[(((uint32_t)(int32_t)IRQn) >> 5UL)] & (1UL << (((uint32_t)(int32_t)IRQn) & 0x1FUL))) != 0UL) ? 1UL : 0UL));
 N  }
 N  else
 N  {
@@ -3450,13 +3296,13 @@ Xstatic __inline void __NVIC_SetPriority(IRQn_Type IRQn, uint32_t priority)
 N{
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    NVIC->IP[((uint32_t)IRQn)]               = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
-X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->IP[((uint32_t)IRQn)]               = (uint8_t)((priority << (8U - 3)) & (uint32_t)0xFFUL);
+N    NVIC->IP[((uint32_t)(int32_t)IRQn)]               = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+X    ((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->IP[((uint32_t)(int32_t)IRQn)]               = (uint8_t)((priority << (8U - 3)) & (uint32_t)0xFFUL);
 N  }
 N  else
 N  {
-N    SCB->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
-X    ((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - 3)) & (uint32_t)0xFFUL);
+N    SCB->SHP[(((uint32_t)(int32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - __NVIC_PRIO_BITS)) & (uint32_t)0xFFUL);
+X    ((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->SHP[(((uint32_t)(int32_t)IRQn) & 0xFUL)-4UL] = (uint8_t)((priority << (8U - 3)) & (uint32_t)0xFFUL);
 N  }
 N}
 N
@@ -3476,13 +3322,13 @@ N{
 N
 N  if ((int32_t)(IRQn) >= 0)
 N  {
-N    return(((uint32_t)NVIC->IP[((uint32_t)IRQn)]               >> (8U - __NVIC_PRIO_BITS)));
-X    return(((uint32_t)((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->IP[((uint32_t)IRQn)]               >> (8U - 3)));
+N    return(((uint32_t)NVIC->IP[((uint32_t)(int32_t)IRQn)]               >> (8U - __NVIC_PRIO_BITS)));
+X    return(((uint32_t)((NVIC_Type *) ((0xE000E000UL) + 0x0100UL) )->IP[((uint32_t)(int32_t)IRQn)]               >> (8U - 3)));
 N  }
 N  else
 N  {
-N    return(((uint32_t)SCB->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] >> (8U - __NVIC_PRIO_BITS)));
-X    return(((uint32_t)((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->SHP[(((uint32_t)IRQn) & 0xFUL)-4UL] >> (8U - 3)));
+N    return(((uint32_t)SCB->SHP[(((uint32_t)(int32_t)IRQn) & 0xFUL)-4UL] >> (8U - __NVIC_PRIO_BITS)));
+X    return(((uint32_t)((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->SHP[(((uint32_t)(int32_t)IRQn) & 0xFUL)-4UL] >> (8U - 3)));
 N  }
 N}
 N
@@ -3557,10 +3403,10 @@ N */
 N__STATIC_INLINE void __NVIC_SetVector(IRQn_Type IRQn, uint32_t vector)
 Xstatic __inline void __NVIC_SetVector(IRQn_Type IRQn, uint32_t vector)
 N{
-N  uint32_t vectors = (uint32_t )SCB->VTOR;
-X  uint32_t vectors = (uint32_t )((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->VTOR;
-N  (* (int *) (vectors + ((int32_t)IRQn + NVIC_USER_IRQ_OFFSET) * 4)) = vector;
-X  (* (int *) (vectors + ((int32_t)IRQn + 16) * 4)) = vector;
+N  uint32_t *vectors = (uint32_t *)SCB->VTOR;
+X  uint32_t *vectors = (uint32_t *)((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->VTOR;
+N  vectors[(int32_t)IRQn + NVIC_USER_IRQ_OFFSET] = vector;
+X  vectors[(int32_t)IRQn + 16] = vector;
 N}
 N
 N
@@ -3575,10 +3421,10 @@ N */
 N__STATIC_INLINE uint32_t __NVIC_GetVector(IRQn_Type IRQn)
 Xstatic __inline uint32_t __NVIC_GetVector(IRQn_Type IRQn)
 N{
-N  uint32_t vectors = (uint32_t )SCB->VTOR;
-X  uint32_t vectors = (uint32_t )((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->VTOR;
-N  return (uint32_t)(* (int *) (vectors + ((int32_t)IRQn + NVIC_USER_IRQ_OFFSET) * 4));
-X  return (uint32_t)(* (int *) (vectors + ((int32_t)IRQn + 16) * 4));
+N  uint32_t *vectors = (uint32_t *)SCB->VTOR;
+X  uint32_t *vectors = (uint32_t *)((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->VTOR;
+N  return vectors[(int32_t)IRQn + NVIC_USER_IRQ_OFFSET];
+X  return vectors[(int32_t)IRQn + 16];
 N}
 N
 N
@@ -3586,8 +3432,8 @@ N/**
 N  \brief   System Reset
 N  \details Initiates a system reset request to reset the MCU.
 N */
-N__NO_RETURN __STATIC_INLINE void __NVIC_SystemReset(void)
-X__declspec(noreturn) static __inline void __NVIC_SystemReset(void)
+N__STATIC_INLINE void __NVIC_SystemReset(void)
+Xstatic __inline void __NVIC_SystemReset(void)
 N{
 N  __DSB();                                                          /* Ensure all outstanding memory accesses included
 X  do { __schedule_barrier(); __dsb(0xF); __schedule_barrier(); } while (0U);                                                          
@@ -3609,321 +3455,6 @@ N  }
 N}
 N
 N/*@} end of CMSIS_Core_NVICFunctions */
-N
-N/* ##########################  MPU functions  #################################### */
-N
-N#if defined (__MPU_PRESENT) && (__MPU_PRESENT == 1U)
-X#if 1L && (1 == 1U)
-N
-N#include "mpu_armv7.h"
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\mpu_armv7.h" 1
-N/******************************************************************************
-N * @file     mpu_armv7.h
-N * @brief    CMSIS MPU API for Armv7-M MPU
-N * @version  V5.1.0
-N * @date     08. March 2019
-N ******************************************************************************/
-N/*
-N * Copyright (c) 2017-2019 Arm Limited. All rights reserved.
-N *
-N * SPDX-License-Identifier: Apache-2.0
-N *
-N * Licensed under the Apache License, Version 2.0 (the License); you may
-N * not use this file except in compliance with the License.
-N * You may obtain a copy of the License at
-N *
-N * www.apache.org/licenses/LICENSE-2.0
-N *
-N * Unless required by applicable law or agreed to in writing, software
-N * distributed under the License is distributed on an AS IS BASIS, WITHOUT
-N * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-N * See the License for the specific language governing permissions and
-N * limitations under the License.
-N */
-N 
-N#if   defined ( __ICCARM__ )
-X#if   0L
-S  #pragma system_include         /* treat file as system include file for MISRA check */
-S#elif defined (__clang__)
-X#elif 0L
-S  #pragma clang system_header    /* treat file as system include file */
-N#endif
-N 
-N#ifndef ARM_MPU_ARMV7_H
-N#define ARM_MPU_ARMV7_H
-N
-N#define ARM_MPU_REGION_SIZE_32B      ((uint8_t)0x04U) ///!< MPU Region Size 32 Bytes
-N#define ARM_MPU_REGION_SIZE_64B      ((uint8_t)0x05U) ///!< MPU Region Size 64 Bytes
-N#define ARM_MPU_REGION_SIZE_128B     ((uint8_t)0x06U) ///!< MPU Region Size 128 Bytes
-N#define ARM_MPU_REGION_SIZE_256B     ((uint8_t)0x07U) ///!< MPU Region Size 256 Bytes
-N#define ARM_MPU_REGION_SIZE_512B     ((uint8_t)0x08U) ///!< MPU Region Size 512 Bytes
-N#define ARM_MPU_REGION_SIZE_1KB      ((uint8_t)0x09U) ///!< MPU Region Size 1 KByte
-N#define ARM_MPU_REGION_SIZE_2KB      ((uint8_t)0x0AU) ///!< MPU Region Size 2 KBytes
-N#define ARM_MPU_REGION_SIZE_4KB      ((uint8_t)0x0BU) ///!< MPU Region Size 4 KBytes
-N#define ARM_MPU_REGION_SIZE_8KB      ((uint8_t)0x0CU) ///!< MPU Region Size 8 KBytes
-N#define ARM_MPU_REGION_SIZE_16KB     ((uint8_t)0x0DU) ///!< MPU Region Size 16 KBytes
-N#define ARM_MPU_REGION_SIZE_32KB     ((uint8_t)0x0EU) ///!< MPU Region Size 32 KBytes
-N#define ARM_MPU_REGION_SIZE_64KB     ((uint8_t)0x0FU) ///!< MPU Region Size 64 KBytes
-N#define ARM_MPU_REGION_SIZE_128KB    ((uint8_t)0x10U) ///!< MPU Region Size 128 KBytes
-N#define ARM_MPU_REGION_SIZE_256KB    ((uint8_t)0x11U) ///!< MPU Region Size 256 KBytes
-N#define ARM_MPU_REGION_SIZE_512KB    ((uint8_t)0x12U) ///!< MPU Region Size 512 KBytes
-N#define ARM_MPU_REGION_SIZE_1MB      ((uint8_t)0x13U) ///!< MPU Region Size 1 MByte
-N#define ARM_MPU_REGION_SIZE_2MB      ((uint8_t)0x14U) ///!< MPU Region Size 2 MBytes
-N#define ARM_MPU_REGION_SIZE_4MB      ((uint8_t)0x15U) ///!< MPU Region Size 4 MBytes
-N#define ARM_MPU_REGION_SIZE_8MB      ((uint8_t)0x16U) ///!< MPU Region Size 8 MBytes
-N#define ARM_MPU_REGION_SIZE_16MB     ((uint8_t)0x17U) ///!< MPU Region Size 16 MBytes
-N#define ARM_MPU_REGION_SIZE_32MB     ((uint8_t)0x18U) ///!< MPU Region Size 32 MBytes
-N#define ARM_MPU_REGION_SIZE_64MB     ((uint8_t)0x19U) ///!< MPU Region Size 64 MBytes
-N#define ARM_MPU_REGION_SIZE_128MB    ((uint8_t)0x1AU) ///!< MPU Region Size 128 MBytes
-N#define ARM_MPU_REGION_SIZE_256MB    ((uint8_t)0x1BU) ///!< MPU Region Size 256 MBytes
-N#define ARM_MPU_REGION_SIZE_512MB    ((uint8_t)0x1CU) ///!< MPU Region Size 512 MBytes
-N#define ARM_MPU_REGION_SIZE_1GB      ((uint8_t)0x1DU) ///!< MPU Region Size 1 GByte
-N#define ARM_MPU_REGION_SIZE_2GB      ((uint8_t)0x1EU) ///!< MPU Region Size 2 GBytes
-N#define ARM_MPU_REGION_SIZE_4GB      ((uint8_t)0x1FU) ///!< MPU Region Size 4 GBytes
-N
-N#define ARM_MPU_AP_NONE 0U ///!< MPU Access Permission no access
-N#define ARM_MPU_AP_PRIV 1U ///!< MPU Access Permission privileged access only
-N#define ARM_MPU_AP_URO  2U ///!< MPU Access Permission unprivileged access read-only
-N#define ARM_MPU_AP_FULL 3U ///!< MPU Access Permission full access
-N#define ARM_MPU_AP_PRO  5U ///!< MPU Access Permission privileged access read-only
-N#define ARM_MPU_AP_RO   6U ///!< MPU Access Permission read-only access
-N
-N/** MPU Region Base Address Register Value
-N*
-N* \param Region The region to be configured, number 0 to 15.
-N* \param BaseAddress The base address for the region.
-N*/
-N#define ARM_MPU_RBAR(Region, BaseAddress) \
-N  (((BaseAddress) & MPU_RBAR_ADDR_Msk) |  \
-N   ((Region) & MPU_RBAR_REGION_Msk)    |  \
-N   (MPU_RBAR_VALID_Msk))
-X#define ARM_MPU_RBAR(Region, BaseAddress)   (((BaseAddress) & MPU_RBAR_ADDR_Msk) |     ((Region) & MPU_RBAR_REGION_Msk)    |     (MPU_RBAR_VALID_Msk))
-N
-N/**
-N* MPU Memory Access Attributes
-N* 
-N* \param TypeExtField      Type extension field, allows you to configure memory access type, for example strongly ordered, peripheral.
-N* \param IsShareable       Region is shareable between multiple bus masters.
-N* \param IsCacheable       Region is cacheable, i.e. its value may be kept in cache.
-N* \param IsBufferable      Region is bufferable, i.e. using write-back caching. Cacheable but non-bufferable regions use write-through policy.
-N*/  
-N#define ARM_MPU_ACCESS_(TypeExtField, IsShareable, IsCacheable, IsBufferable)   \
-N  ((((TypeExtField) << MPU_RASR_TEX_Pos) & MPU_RASR_TEX_Msk)                  | \
-N   (((IsShareable)  << MPU_RASR_S_Pos)   & MPU_RASR_S_Msk)                    | \
-N   (((IsCacheable)  << MPU_RASR_C_Pos)   & MPU_RASR_C_Msk)                    | \
-N   (((IsBufferable) << MPU_RASR_B_Pos)   & MPU_RASR_B_Msk))
-X#define ARM_MPU_ACCESS_(TypeExtField, IsShareable, IsCacheable, IsBufferable)     ((((TypeExtField) << MPU_RASR_TEX_Pos) & MPU_RASR_TEX_Msk)                  |    (((IsShareable)  << MPU_RASR_S_Pos)   & MPU_RASR_S_Msk)                    |    (((IsCacheable)  << MPU_RASR_C_Pos)   & MPU_RASR_C_Msk)                    |    (((IsBufferable) << MPU_RASR_B_Pos)   & MPU_RASR_B_Msk))
-N
-N/**
-N* MPU Region Attribute and Size Register Value
-N* 
-N* \param DisableExec       Instruction access disable bit, 1= disable instruction fetches.
-N* \param AccessPermission  Data access permissions, allows you to configure read/write access for User and Privileged mode.
-N* \param AccessAttributes  Memory access attribution, see \ref ARM_MPU_ACCESS_.
-N* \param SubRegionDisable  Sub-region disable field.
-N* \param Size              Region size of the region to be configured, for example 4K, 8K.
-N*/
-N#define ARM_MPU_RASR_EX(DisableExec, AccessPermission, AccessAttributes, SubRegionDisable, Size)    \
-N  ((((DisableExec)      << MPU_RASR_XN_Pos)   & MPU_RASR_XN_Msk)                                  | \
-N   (((AccessPermission) << MPU_RASR_AP_Pos)   & MPU_RASR_AP_Msk)                                  | \
-N   (((AccessAttributes) & (MPU_RASR_TEX_Msk | MPU_RASR_S_Msk | MPU_RASR_C_Msk | MPU_RASR_B_Msk))) | \
-N   (((SubRegionDisable) << MPU_RASR_SRD_Pos)  & MPU_RASR_SRD_Msk)                                 | \
-N   (((Size)             << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)                                | \
-N   (((MPU_RASR_ENABLE_Msk))))
-X#define ARM_MPU_RASR_EX(DisableExec, AccessPermission, AccessAttributes, SubRegionDisable, Size)      ((((DisableExec)      << MPU_RASR_XN_Pos)   & MPU_RASR_XN_Msk)                                  |    (((AccessPermission) << MPU_RASR_AP_Pos)   & MPU_RASR_AP_Msk)                                  |    (((AccessAttributes) & (MPU_RASR_TEX_Msk | MPU_RASR_S_Msk | MPU_RASR_C_Msk | MPU_RASR_B_Msk))) |    (((SubRegionDisable) << MPU_RASR_SRD_Pos)  & MPU_RASR_SRD_Msk)                                 |    (((Size)             << MPU_RASR_SIZE_Pos) & MPU_RASR_SIZE_Msk)                                |    (((MPU_RASR_ENABLE_Msk))))
-N
-N/**
-N* MPU Region Attribute and Size Register Value
-N* 
-N* \param DisableExec       Instruction access disable bit, 1= disable instruction fetches.
-N* \param AccessPermission  Data access permissions, allows you to configure read/write access for User and Privileged mode.
-N* \param TypeExtField      Type extension field, allows you to configure memory access type, for example strongly ordered, peripheral.
-N* \param IsShareable       Region is shareable between multiple bus masters.
-N* \param IsCacheable       Region is cacheable, i.e. its value may be kept in cache.
-N* \param IsBufferable      Region is bufferable, i.e. using write-back caching. Cacheable but non-bufferable regions use write-through policy.
-N* \param SubRegionDisable  Sub-region disable field.
-N* \param Size              Region size of the region to be configured, for example 4K, 8K.
-N*/                         
-N#define ARM_MPU_RASR(DisableExec, AccessPermission, TypeExtField, IsShareable, IsCacheable, IsBufferable, SubRegionDisable, Size) \
-N  ARM_MPU_RASR_EX(DisableExec, AccessPermission, ARM_MPU_ACCESS_(TypeExtField, IsShareable, IsCacheable, IsBufferable), SubRegionDisable, Size)
-X#define ARM_MPU_RASR(DisableExec, AccessPermission, TypeExtField, IsShareable, IsCacheable, IsBufferable, SubRegionDisable, Size)   ARM_MPU_RASR_EX(DisableExec, AccessPermission, ARM_MPU_ACCESS_(TypeExtField, IsShareable, IsCacheable, IsBufferable), SubRegionDisable, Size)
-N
-N/**
-N* MPU Memory Access Attribute for strongly ordered memory.
-N*  - TEX: 000b
-N*  - Shareable
-N*  - Non-cacheable
-N*  - Non-bufferable
-N*/ 
-N#define ARM_MPU_ACCESS_ORDERED ARM_MPU_ACCESS_(0U, 1U, 0U, 0U)
-N
-N/**
-N* MPU Memory Access Attribute for device memory.
-N*  - TEX: 000b (if shareable) or 010b (if non-shareable)
-N*  - Shareable or non-shareable
-N*  - Non-cacheable
-N*  - Bufferable (if shareable) or non-bufferable (if non-shareable)
-N*
-N* \param IsShareable Configures the device memory as shareable or non-shareable.
-N*/ 
-N#define ARM_MPU_ACCESS_DEVICE(IsShareable) ((IsShareable) ? ARM_MPU_ACCESS_(0U, 1U, 0U, 1U) : ARM_MPU_ACCESS_(2U, 0U, 0U, 0U))
-N
-N/**
-N* MPU Memory Access Attribute for normal memory.
-N*  - TEX: 1BBb (reflecting outer cacheability rules)
-N*  - Shareable or non-shareable
-N*  - Cacheable or non-cacheable (reflecting inner cacheability rules)
-N*  - Bufferable or non-bufferable (reflecting inner cacheability rules)
-N*
-N* \param OuterCp Configures the outer cache policy.
-N* \param InnerCp Configures the inner cache policy.
-N* \param IsShareable Configures the memory as shareable or non-shareable.
-N*/ 
-N#define ARM_MPU_ACCESS_NORMAL(OuterCp, InnerCp, IsShareable) ARM_MPU_ACCESS_((4U | (OuterCp)), IsShareable, ((InnerCp) & 2U), ((InnerCp) & 1U))
-N
-N/**
-N* MPU Memory Access Attribute non-cacheable policy.
-N*/
-N#define ARM_MPU_CACHEP_NOCACHE 0U
-N
-N/**
-N* MPU Memory Access Attribute write-back, write and read allocate policy.
-N*/
-N#define ARM_MPU_CACHEP_WB_WRA 1U
-N
-N/**
-N* MPU Memory Access Attribute write-through, no write allocate policy.
-N*/
-N#define ARM_MPU_CACHEP_WT_NWA 2U
-N
-N/**
-N* MPU Memory Access Attribute write-back, no write allocate policy.
-N*/
-N#define ARM_MPU_CACHEP_WB_NWA 3U
-N
-N
-N/**
-N* Struct for a single MPU Region
-N*/
-Ntypedef struct {
-N  uint32_t RBAR; //!< The region base address register value (RBAR)
-N  uint32_t RASR; //!< The region attribute and size register value (RASR) \ref MPU_RASR
-N} ARM_MPU_Region_t;
-N    
-N/** Enable the MPU.
-N* \param MPU_Control Default access permissions for unconfigured regions.
-N*/
-N__STATIC_INLINE void ARM_MPU_Enable(uint32_t MPU_Control)
-Xstatic __inline void ARM_MPU_Enable(uint32_t MPU_Control)
-N{
-N  MPU->CTRL = MPU_Control | MPU_CTRL_ENABLE_Msk;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->CTRL = MPU_Control | (1UL );
-N#ifdef SCB_SHCSR_MEMFAULTENA_Msk
-N  SCB->SHCSR |= SCB_SHCSR_MEMFAULTENA_Msk;
-X  ((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->SHCSR |= (1UL << 16U);
-N#endif
-N  __DSB();
-X  do { __schedule_barrier(); __dsb(0xF); __schedule_barrier(); } while (0U);
-N  __ISB();
-X  do { __schedule_barrier(); __isb(0xF); __schedule_barrier(); } while (0U);
-N}
-N
-N/** Disable the MPU.
-N*/
-N__STATIC_INLINE void ARM_MPU_Disable(void)
-Xstatic __inline void ARM_MPU_Disable(void)
-N{
-N  __DMB();
-X  do { __schedule_barrier(); __dmb(0xF); __schedule_barrier(); } while (0U);
-N#ifdef SCB_SHCSR_MEMFAULTENA_Msk
-N  SCB->SHCSR &= ~SCB_SHCSR_MEMFAULTENA_Msk;
-X  ((SCB_Type *) ((0xE000E000UL) + 0x0D00UL) )->SHCSR &= ~(1UL << 16U);
-N#endif
-N  MPU->CTRL  &= ~MPU_CTRL_ENABLE_Msk;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->CTRL  &= ~(1UL );
-N}
-N
-N/** Clear and disable the given MPU region.
-N* \param rnr Region number to be cleared.
-N*/
-N__STATIC_INLINE void ARM_MPU_ClrRegion(uint32_t rnr)
-Xstatic __inline void ARM_MPU_ClrRegion(uint32_t rnr)
-N{
-N  MPU->RNR = rnr;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RNR = rnr;
-N  MPU->RASR = 0U;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RASR = 0U;
-N}
-N
-N/** Configure an MPU region.
-N* \param rbar Value for RBAR register.
-N* \param rsar Value for RSAR register.
-N*/   
-N__STATIC_INLINE void ARM_MPU_SetRegion(uint32_t rbar, uint32_t rasr)
-Xstatic __inline void ARM_MPU_SetRegion(uint32_t rbar, uint32_t rasr)
-N{
-N  MPU->RBAR = rbar;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RBAR = rbar;
-N  MPU->RASR = rasr;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RASR = rasr;
-N}
-N
-N/** Configure the given MPU region.
-N* \param rnr Region number to be configured.
-N* \param rbar Value for RBAR register.
-N* \param rsar Value for RSAR register.
-N*/   
-N__STATIC_INLINE void ARM_MPU_SetRegionEx(uint32_t rnr, uint32_t rbar, uint32_t rasr)
-Xstatic __inline void ARM_MPU_SetRegionEx(uint32_t rnr, uint32_t rbar, uint32_t rasr)
-N{
-N  MPU->RNR = rnr;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RNR = rnr;
-N  MPU->RBAR = rbar;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RBAR = rbar;
-N  MPU->RASR = rasr;
-X  ((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RASR = rasr;
-N}
-N
-N/** Memcopy with strictly ordered memory access, e.g. for register targets.
-N* \param dst Destination data is copied to.
-N* \param src Source data is copied from.
-N* \param len Amount of data words to be copied.
-N*/
-N__STATIC_INLINE void ARM_MPU_OrderedMemcpy(volatile uint32_t* dst, const uint32_t* __RESTRICT src, uint32_t len)
-Xstatic __inline void ARM_MPU_OrderedMemcpy(volatile uint32_t* dst, const uint32_t* __restrict src, uint32_t len)
-N{
-N  uint32_t i;
-N  for (i = 0U; i < len; ++i) 
-N  {
-N    dst[i] = src[i];
-N  }
-N}
-N
-N/** Load the given number of MPU regions from a table.
-N* \param table Pointer to the MPU configuration table.
-N* \param cnt Amount of regions to be configured.
-N*/
-N__STATIC_INLINE void ARM_MPU_Load(ARM_MPU_Region_t const* table, uint32_t cnt) 
-Xstatic __inline void ARM_MPU_Load(ARM_MPU_Region_t const* table, uint32_t cnt) 
-N{
-N  const uint32_t rowWordSize = sizeof(ARM_MPU_Region_t)/4U;
-N  while (cnt > MPU_TYPE_RALIASES) {
-X  while (cnt > 4U) {
-N    ARM_MPU_OrderedMemcpy(&(MPU->RBAR), &(table->RBAR), MPU_TYPE_RALIASES*rowWordSize);
-X    ARM_MPU_OrderedMemcpy(&(((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RBAR), &(table->RBAR), 4U*rowWordSize);
-N    table += MPU_TYPE_RALIASES;
-X    table += 4U;
-N    cnt -= MPU_TYPE_RALIASES;
-X    cnt -= 4U;
-N  }
-N  ARM_MPU_OrderedMemcpy(&(MPU->RBAR), &(table->RBAR), cnt*rowWordSize);
-X  ARM_MPU_OrderedMemcpy(&(((MPU_Type *) ((0xE000E000UL) + 0x0D90UL) )->RBAR), &(table->RBAR), cnt*rowWordSize);
-N}
-N
-N#endif
-L 1776 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\ARM\CMSIS\5.5.1\CMSIS\Core\Include\core_cm3.h" 2
-N
-N#endif
 N
 N
 N/* ##########################  FPU functions  #################################### */
@@ -4102,7 +3633,7 @@ N
 N#endif /* __CORE_CM3_H_DEPENDANT */
 N
 N#endif /* __CMSIS_GENERIC */
-L 80 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc\MDR32Fx.h" 2
+L 99 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc\MDR32Fx.h" 2
 N#include "system_MDR32F9Qx.h"
 L 1 ".\RTE\Device\MDR1986BE92\system_MDR32F9Qx.h" 1
 N/**
@@ -4172,7 +3703,7 @@ N
 N/******************* (C) COPYRIGHT 2010 Phyton *********************************
 N*
 N* END OF FILE system_MDR32F9Qx.h */
-L 81 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc\MDR32Fx.h" 2
+L 100 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\CMSIS\CM3\DeviceSupport\MDR32F9Qx\inc\MDR32Fx.h" 2
 N
 N/** @defgroup __Exported_types Exported types
 N  * @{
@@ -7224,14 +6755,14 @@ N/** @} */ /* End of group __CMSIS */
 N
 N#endif /* __MDR32FX_H */
 N
-N/*
+N/******************* (C) COPYRIGHT 2010 Phyton *********************************
 N*
 N* END OF FILE MDR32Fx.h */
 L 12 "adc.c" 2
 N/* Подключение заголовочного файла с конфигурацией 
 N   Standard Peripheral Library (SPL) для К1986ВЕ92QI(MDR32F9Q2I) */
 N#include <MDR32F9Qx_config.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Config\MDR32F9Qx_config.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Config\MDR32F9Qx_config.h" 1
 N/**
 N  ******************************************************************************
 N  * @file    MDR32F9Qx_Demo\Project\Demo\MDR32F9Qx_config.h
@@ -7278,10 +6809,87 @@ N#ifndef __MDR32F9Qx_CONFIG_H
 N#define __MDR32F9Qx_CONFIG_H
 N
 N#if ((__CC_ARM == 0) || (__ARMCC_VERSION < 5000000))
-X#if ((1 == 0) || (5060750 < 5000000))
+X#if ((1 == 0) || (5060528 < 5000000))
 S	#include "MDR32F9Qx_board.h"
 N#endif
-N//#include "MDR32F9Qx_lib.h"  - �� ������������� ���� �� ���������� ���� �� ������ ��������, �� ����� ����
+N#include "MDR32F9Qx_lib.h"
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_lib.h" 1
+N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_lib.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    23/03/2011
+N  * @brief   This file contains all file IDs of the Milandr MDR32F9Qx
+N  *          firmware library source files.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
+N  * FILE MDR32F9Qx_lib.h
+N  */
+N
+N/* Define to prevent recursive inclusion -------------------------------------*/
+N#ifndef __MDR32F9QX_LIB_H
+N#define __MDR32F9QX_LIB_H
+N
+N#ifdef __cplusplus
+Sextern "C" {
+N#endif
+N
+N#define FILEID__MDR32F9X_CAN_C					1
+N#define FILEID__MDR32F9X_USB_C					2
+N#define FILEID__MDR32F9X_EEPROM_C				3
+N#define FILEID__MDR32F9X_RST_CLK_C				4
+N#define FILEID__MDR32F9X_DMA_C					5
+N#define FILEID__MDR32F9X_UART_C					6
+N#define FILEID__MDR32F9X_SSP_C					7
+N#define FILEID__MDR32F9X_I2C_C					8
+N#define FILEID__MDR32F9X_POWER_C				9
+N#define FILEID__MDR32F9X_WWDG_C					10
+N#define FILEID__MDR32F9X_IWDG_C					11
+N#define FILEID__MDR32F9X_TIMER_C				12
+N#define FILEID__MDR32F9X_ADC_C					13
+N#define FILEID__MDR32F9X_DAC_C					14
+N#define FILEID__MDR32F9X_COMP_C					15
+N#define FILEID__MDR32F9X_PORT_C					16
+N#define FILEID__MDR32F9X_BKP_C					17
+N#define FILEID__MDR32F9X_EBC_C					18
+N#define FILEID__MDR32F9X_USB_DEVICE_C			19
+N#define FILEID__MDR32F9X_USB_CDC_C				20
+N#define FILEID__MDR32F9X_MIL_STD1553_C			21
+N#define FILEID__MDR32F9X_ARINC429R_C			22
+N#define FILEID__MDR32F9X_ARINC429T_C			23
+N#define FILEID__MDR32F9X_ETH_C					24
+N#define FILEID__MDR32F9Qx_AUDIO_C				25
+N#define FILEID__MDR32F9Qx_KEYPAD_C				26
+N#define FILEID__MDR32F9Qx_LED_C					27
+N#define FILEID__MDR32F9Qx_SDIO_C				28
+N#define FILEID__MDR32F9Qx_DSP_C					29
+N
+N#define  FILEID__USER_LO                    	100
+N
+N/* Supported USB Device Classes */
+N#define USB_DEVICE_CLASS_CDC 2
+N
+N#ifdef __cplusplus
+S} // extern "C" block end
+N#endif
+N
+N#endif /* __MDR32F9QX_LIB_H */
+N
+N/******************* (C) COPYRIGHT 2013 Milandr ********************************
+N*
+N* END OF FILE MDR32F9Qx_lib.h */
+L 50 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Config\MDR32F9Qx_config.h" 2
 N#include <stdint.h>
 N
 N#if defined (USE_MDR32F9Q1_Rev0) || defined (USE_MDR32F9Q1_Rev1) ||\
@@ -7315,7 +6923,7 @@ N/* Uncomment the line(s) below to define used JTAG port(s). Leave all commented
 N * if there is no JTAG ports */
 N#if (defined(USE_MDR1986VE9x) || defined (USE_MDR1901VC1T))
 X#if (1L || 0L)
-N //#define USE_JTAG_A 
+N/* #define USE_JTAG_A */
 N #define USE_JTAG_B 
 N#endif
 N
@@ -7496,8 +7104,27 @@ N* END OF FILE MDR32F9Qx_config.h */
 L 15 "adc.c" 2
 N/* Подключение функций управления портами */
 N#include <MDR32F9Qx_port.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_port.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_port.h" 1
 N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_port.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    16/06/2010
+N  * @brief   This file contains all the functions prototypes for the PORTs
+N  *          firmware library.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
 N  * FILE MDR32F9Qx_port.h
 N  */
 N
@@ -7512,64 +7139,6 @@ N
 N/* Includes ------------------------------------------------------------------*/
 N#include "MDR32F9Qx_config.h"
 N#include "MDR32F9Qx_lib.h"
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_lib.h" 1
-N/**
-N  * FILE MDR32F9Qx_lib.h
-N  */
-N
-N/* Define to prevent recursive inclusion -------------------------------------*/
-N#ifndef __MDR32F9QX_LIB_H
-N#define __MDR32F9QX_LIB_H
-N
-N#ifdef __cplusplus
-Sextern "C" {
-N#endif
-N
-N#define FILEID__MDR32F9X_CAN_C					1
-N#define FILEID__MDR32F9X_USB_C					2
-N#define FILEID__MDR32F9X_EEPROM_C				3
-N#define FILEID__MDR32F9X_RST_CLK_C				4
-N#define FILEID__MDR32F9X_DMA_C					5
-N#define FILEID__MDR32F9X_UART_C					6
-N#define FILEID__MDR32F9X_SSP_C					7
-N#define FILEID__MDR32F9X_I2C_C					8
-N#define FILEID__MDR32F9X_POWER_C				9
-N#define FILEID__MDR32F9X_WWDG_C					10
-N#define FILEID__MDR32F9X_IWDG_C					11
-N#define FILEID__MDR32F9X_TIMER_C				12
-N#define FILEID__MDR32F9X_ADC_C					13
-N#define FILEID__MDR32F9X_DAC_C					14
-N#define FILEID__MDR32F9X_COMP_C					15
-N#define FILEID__MDR32F9X_PORT_C					16
-N#define FILEID__MDR32F9X_BKP_C					17
-N#define FILEID__MDR32F9X_EBC_C					18
-N#define FILEID__MDR32F9X_USB_DEVICE_C			19
-N#define FILEID__MDR32F9X_USB_CDC_C				20
-N#define FILEID__MDR32F9X_MIL_STD1553_C			21
-N#define FILEID__MDR32F9X_ARINC429R_C			22
-N#define FILEID__MDR32F9X_ARINC429T_C			23
-N#define FILEID__MDR32F9X_ETH_C					24
-N#define FILEID__MDR32F9Qx_AUDIO_C				25
-N#define FILEID__MDR32F9Qx_KEYPAD_C				26
-N#define FILEID__MDR32F9Qx_LED_C					27
-N#define FILEID__MDR32F9Qx_SDIO_C				28
-N#define FILEID__MDR32F9Qx_DSP_C					29
-N
-N#define  FILEID__USER_LO                    	100
-N
-N/* Supported USB Device Classes */
-N#define USB_DEVICE_CLASS_CDC 2
-N
-N#ifdef __cplusplus
-S} // extern "C" block end
-N#endif
-N
-N#endif /* __MDR32F9QX_LIB_H */
-N
-N/*
-N*
-N* END OF FILE MDR32F9Qx_lib.h */
-L 16 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_port.h" 2
 N
 N
 N/** @addtogroup __MDR32F9Qx_StdPeriph_Driver MDR32F9Qx Standard Peripherial Driver
@@ -7893,14 +7462,33 @@ N#endif
 N
 N#endif /* __MDR32F9Qx_PORT_H */
 N
-N/*
+N/******************* (C) COPYRIGHT 2010 Phyton *********************************
 N*
 N* END OF FILE MDR32F9Qx_port.h */
 L 17 "adc.c" 2
 N/* Подключение функций управления тактированием */
 N#include <MDR32F9Qx_rst_clk.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_rst_clk.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_rst_clk.h" 1
 N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_rst_clk.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    23/09/2011
+N  * @brief   This file contains all the functions prototypes for the RST_CLK
+N  *          firmware library.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
 N  * FILE MDR32F9Qx_rst_clk.h
 N  */
 N
@@ -7913,7 +7501,6 @@ Sextern "C" {
 N#endif
 N
 N/* Includes ------------------------------------------------------------------*/
-N#include "MDR32F9Qx_config.h"
 N#include "MDR32F9Qx_lib.h"
 N
 N/** @addtogroup __MDR32F9Qx_StdPeriph_Driver MDR32F9Qx Standard Peripherial Driver
@@ -8287,10 +7874,10 @@ N/**
 N  * @brief RST_CLK peripheral modules clock constants
 N  */
 N
-N#define PCLK_BIT(BASE)              ((uint32_t)(1U << ((((uint32_t)BASE) >> 15) & 0x1F)))
+N#define PCLK_BIT(BASE)              ((uint32_t)(1 << ((((uint32_t)BASE) >> 15) & 0x1F)))
 N#if defined USE_MDR1986VE3
 X#if 0L
-S	#define PCLK_BIT2(BASE)				((uint32_t)(1U << ((((uint32_t)BASE) >> 15) & 0x0F)))
+S	#define PCLK_BIT2(BASE)				((uint32_t)(1 << ((((uint32_t)BASE) >> 15) & 0x0F)))
 N#endif
 N
 N#if defined ( USE_MDR1986VE9x )
@@ -8723,14 +8310,33 @@ N#endif
 N
 N#endif /* __MDR32F9Qx_RST_CLK_H */
 N
-N/*
+N/******************* (C) COPYRIGHT 2010 Phyton *********************************
 N*
 N* END OF FILE MDR32F9Qx_rst_clk.h */
 L 19 "adc.c" 2
 N/* Подключение функций управления АЦП */
 N#include <MDR32F9Qx_adc.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_adc.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_adc.h" 1
 N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_adc.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    21/07/2011
+N  * @brief   This file contains all the functions prototypes for the ADC
+N  *          firmware library.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2011 Phyton</center></h2>
+N  ******************************************************************************
 N  * FILE MDR32F9Qx_adc.h
 N  */
 N
@@ -8820,10 +8426,10 @@ N  uint32_t ADC_LevelControl;            /*!< Enables or disables the ADCx level
 N                                             This parameter can be a value of @ref ADCx_Level_Control */
 N
 N  uint16_t ADC_LowLevel;                /*!< Specifies the ADCx value low level.
-N                                             This parameter can be a number between 0x0000 and 0x0FFF. */
+N                                             This parameter can be a number between 0x0000 and 0x07FF. */
 N
 N  uint16_t ADC_HighLevel;                /*!< Specifies the ADCx value high level.
-N                                             This parameter can be a number between 0x0000 and 0x0FFF. */
+N                                             This parameter can be a number between 0x0000 and 0x07FF. */
 N
 N  uint32_t ADC_VRefSource;              /*!< Specifies the ADCx voltage reference source (internal or external).
 N                                             This parameter can be a value of @ref ADCx_VRef_Source */
@@ -9089,8 +8695,7 @@ N#define IS_ADC_LEVEL_CONTROL_CONFIG(CONFIG) (((CONFIG) == ADC_LEVEL_CONTROL_Dis
 N                                             ((CONFIG) == ADC_LEVEL_CONTROL_Enable ))
 X#define IS_ADC_LEVEL_CONTROL_CONFIG(CONFIG) (((CONFIG) == ADC_LEVEL_CONTROL_Disable) ||                                              ((CONFIG) == ADC_LEVEL_CONTROL_Enable ))
 N
-N#define ADC_VALUE_MAX                        (0x0FFF)
-N#define IS_ADC_VALUE(VALUE) (((VALUE) >= 0) && ((VALUE) <= ADC_VALUE_MAX))
+N#define IS_ADC_VALUE(VALUE) (((VALUE) >= 0) && ((VALUE) <= 0x07FF))
 N
 N/** @} */ /* End of group ADCx_Level_Control */
 N
@@ -9371,7 +8976,7 @@ N#endif
 N
 N#endif /* __MDR32F9QX_ADC_H */
 N
-N/*
+N/******************* (C) COPYRIGHT 2011 Phyton *********************************
 N*
 N* END OF FILE MDR32F9Qx_adc.h */
 N
@@ -9470,8 +9075,27 @@ N/* END OF FILE MDR32F9Qx_it.h */
 L 15 "common.h" 2
 N/* Подключение функций управления UART */
 N#include <MDR32F9Qx_uart.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_uart.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_uart.h" 1
 N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_uart.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    27/04/2010
+N  * @brief   This file contains all the functions prototypes for the UART
+N  *          firmware library.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
 N  * FILE MDR32F9Qx_uart.h
 N  */
 N
@@ -9819,7 +9443,7 @@ N#endif
 N
 N#endif /* __MDR32F9Qx_UART_H */
 N
-N/*
+N/******************* (C) COPYRIGHT 2010 Phyton *********
 N*
 N* END OF FILE MDR32F9Qx_uart.h */
 L 17 "common.h" 2
@@ -9827,8 +9451,27 @@ N/* Подключение функций управления АЦП */
 N#include <MDR32F9Qx_adc.h>
 N/* Подключение функций управления таймерами */
 N#include <MDR32F9Qx_timer.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_timer.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_timer.h" 1
 N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_timer.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    16/02/2011
+N  * @brief   This file contains all the functions prototypes for the TIMER
+N  *          firmware library.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
 N  * FILE MDR32F9Qx_timer.h
 N  */
 N
@@ -9841,7 +9484,6 @@ Sextern "C" {
 N#endif
 N
 N/* Includes ------------------------------------------------------------------*/
-N#include "MDR32F9Qx_config.h"
 N#include "MDR32F9Qx_lib.h"
 N
 N/** @addtogroup __MDR32F9Qx_StdPeriph_Driver MDR32F9Qx Standard Peripherial Driver
@@ -10719,14 +10361,33 @@ N#endif
 N
 N#endif /* __MDR32F9QX_TIMER_H */
 N
-N/*
+N/******************* (C) COPYRIGHT 2010 Phyton *********************************
 N*
 N* END OF FILE MDR32F9Qx_timer.h */
 L 21 "common.h" 2
 N/* Подключение функций управления контроллером ПДП */
 N#include <MDR32F9Qx_dma.h>
-L 1 "C:\Users\AN-Mi\AppData\Local\Arm\Packs\Keil\MDR1986BExx\1.51\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_dma.h" 1
+L 1 "C:\Keil_v5\ARM\PACK\Keil\MDR1986BExx\1.4\Libraries\MDR32F9Qx_StdPeriph_Driver\inc\MDR32F9Qx_dma.h" 1
 N/**
+N  ******************************************************************************
+N  * @file    MDR32F9Qx_dma.h
+N  * @author  Phyton Application Team
+N  * @version V1.3.0
+N  * @date    11/06/2010
+N  * @brief   This file contains all the functions prototypes for the DMA
+N  *          firmware library.
+N  ******************************************************************************
+N  * <br><br>
+N  *
+N  * THE PRESENT FIRMWARE WHICH IS FOR GUIDANCE ONLY AIMS AT PROVIDING CUSTOMERS
+N  * WITH CODING INFORMATION REGARDING THEIR PRODUCTS IN ORDER FOR THEM TO SAVE
+N  * TIME. AS A RESULT, PHYTON SHALL NOT BE HELD LIABLE FOR ANY DIRECT, INDIRECT
+N  * OR CONSEQUENTIAL DAMAGES WITH RESPECT TO ANY CLAIMS ARISING
+N  * FROM THE CONTENT OF SUCH FIRMWARE AND/OR THE USE MADE BY CUSTOMERS OF THE
+N  * CODING INFORMATION CONTAINED HEREIN IN CONNECTION WITH THEIR PRODUCTS.
+N  *
+N  * <h2><center>&copy; COPYRIGHT 2010 Phyton</center></h2>
+N  ******************************************************************************
 N  * FILE MDR32F9Qx_dma.h
 N  */
 N
@@ -10739,7 +10400,6 @@ Sextern "C" {
 N#endif
 N
 N/* Includes ------------------------------------------------------------------*/
-N#include "MDR32F9Qx_config.h"
 N#include "MDR32F9Qx_lib.h"
 N
 N/** @addtogroup __MDR32F9Qx_StdPeriph_Driver MDR32F9Qx Standard Peripherial Driver
@@ -11071,72 +10731,6 @@ S#define DMA_Channel_SREQ_TIM4_REQ4   ((uint8_t)(29))
 S#define DMA_Channel_SREQ_ADCDMA    ((uint8_t)(30))
 S#define DMA_Channel_SREQ_SW1         ((uint8_t)(31))
 S
-S#elif defined (USE_MDR1901VC1T)
-S
-S/*-- req DMA request ---------------------------------------------------------*/
-S#define DMA_Channel_REQ_UART1_TX    ((uint8_t)(0))
-S#define DMA_Channel_REQ_UART1_RX    ((uint8_t)(1))
-S#define DMA_Channel_REQ_UART2_TX    ((uint8_t)(2))
-S#define DMA_Channel_REQ_UART2_RX    ((uint8_t)(3))
-S#define DMA_Channel_REQ_SSP1_TX     ((uint8_t)(4))
-S#define DMA_Channel_REQ_SSP1_RX     ((uint8_t)(5))
-S#define DMA_Channel_REQ_SSP2_TX     ((uint8_t)(6))
-S#define DMA_Channel_REQ_SSP2_RX     ((uint8_t)(7))
-S
-S#define DMA_Channel_REQ_DSP0        ((uint8_t)(9))
-S#define DMA_Channel_REQ_DSP1        ((uint8_t)(10))
-S
-S#define DMA_Channel_REQ_DSP2        ((uint8_t)(14))
-S#define DMA_Channel_REQ_DSP3        ((uint8_t)(15))
-S#define DMA_Channel_REQ_SSP3_TX     ((uint8_t)(16))
-S#define DMA_Channel_REQ_SSP3_RX     ((uint8_t)(17))
-S#define DMA_Channel_REQ_SSP4_TX     ((uint8_t)(18))
-S#define DMA_Channel_REQ_SSP4_RX     ((uint8_t)(19))
-S#define DMA_Channel_REQ_UART3_TX    ((uint8_t)(20))
-S#define DMA_Channel_REQ_UART3_RX    ((uint8_t)(21)
-S#define DMA_Channel_REQ_AUC_ADC     ((uint8_t)(22))
-S#define DMA_Channel_REQ_AUC_DAC     ((uint8_t)(23))
-S#define DMA_Channel_REQ_CRYPTO      ((uint8_t)(24))
-S#define DMA_Channel_REQ_DSP_TIM     ((uint8_t)(25))
-S#define DMA_Channel_REQ_MCBSP1_TX   ((uint8_t)(26))
-S#define DMA_Channel_REQ_MCBSP1_RX   ((uint8_t)(27))
-S#define DMA_Channel_REQ_MCBSP2_TX   ((uint8_t)(28))
-S#define DMA_Channel_REQ_MCBSP2_RX   ((uint8_t)(29))
-S#define DMA_Channel_REQ_MCBSP3_TX   ((uint8_t)(30))
-S#define DMA_Channel_REQ_MCBSP3_RX   ((uint8_t)(31))
-S
-S/*-- sreq DMA request --------------------------------------------------------*/
-S#define DMA_Channel_SREQ_UART1_TX    ((uint8_t)(0))
-S#define DMA_Channel_SREQ_UART1_RX    ((uint8_t)(1))
-S#define DMA_Channel_SREQ_UART2_TX    ((uint8_t)(2))
-S#define DMA_Channel_SREQ_UART2_RX    ((uint8_t)(3))
-S#define DMA_Channel_SREQ_SSP1_TX     ((uint8_t)(4))
-S#define DMA_Channel_SREQ_SSP1_RX     ((uint8_t)(5))
-S#define DMA_Channel_SREQ_SSP2_TX     ((uint8_t)(6))
-S#define DMA_Channel_SREQ_SSP2_RX     ((uint8_t)(7))
-S#define DMA_Channel_SREQ_ADC1        ((uint8_t)(8))
-S#define DMA_Channel_SREQ_ADC2        ((uint8_t)(9))
-S#define DMA_Channel_SREQ_TIM1        ((uint8_t)(10))
-S#define DMA_Channel_SREQ_TIM2        ((uint8_t)(11))
-S#define DMA_Channel_SREQ_TIM3        ((uint8_t)(12))
-S#define DMA_Channel_SREQ_SDIO        ((uint8_t)(13))
-S#define DMA_Channel_SREQ_DSP0        ((uint8_t)(14))
-S#define DMA_Channel_SREQ_DSP1        ((uint8_t)(15))
-S#define DMA_Channel_SREQ_SSP3_TX     ((uint8_t)(16))
-S#define DMA_Channel_SREQ_SSP3_RX     ((uint8_t)(17))
-S#define DMA_Channel_SREQ_SSP4_TX     ((uint8_t)(18))
-S#define DMA_Channel_SREQ_SSP4_RX     ((uint8_t)(19))
-S#define DMA_Channel_SREQ_UART3_TX    ((uint8_t)(20))
-S#define DMA_Channel_SREQ_UART3_RX    ((uint8_t)(21))
-S
-S#define DMA_Channel_SREQ_DSP_TIM     ((uint8_t)(25))
-S#define DMA_Channel_SREQ_MCBSP1_TX   ((uint8_t)(26))
-S#define DMA_Channel_SREQ_MCBSP1_RX   ((uint8_t)(27))
-S#define DMA_Channel_SREQ_MCBSP2_TX   ((uint8_t)(28))
-S#define DMA_Channel_SREQ_MCBSP2_RX   ((uint8_t)(29))
-S#define DMA_Channel_SREQ_MCBSP3_TX   ((uint8_t)(30))
-S#define DMA_Channel_SREQ_MCBSP3_RX   ((uint8_t)(31))
-S
 N#endif
 N
 N#define IS_DMA_CHANNEL(CHANNEL) (CHANNEL <= (DMA_Channels_Number - 1))
@@ -11399,7 +10993,7 @@ N#endif
 N
 N#endif /* __MDR32F9Qx_DMA_H */
 N
-N/*
+N/******************* (C) COPYRIGHT 2010 Phyton *********************************
 N*
 N* END OF FILE MDR32F9Qx_dma.h */
 N
@@ -11409,9 +11003,9 @@ N // Канал для измерения напряжения
 N
 N #define U_ADC_U_PIN     PORT_Pin_7
 N// Размер буффера результатов измерений
-N #define ADC_BUFFER_SIZE 256
+N #define ADC_BUFFER_SIZE 600
 N #define ADC_FREQ 10000
-N #define ADC_MEAN 20
+N #define ADC_MEAN 5
 N #define PING 0
 N #define PONG 1
 N // Калибровка вольтметра путем указания полученного значения
@@ -11523,7 +11117,7 @@ N */
 N
 N#ifndef __stddef_h
 N#define __stddef_h
-N#define __ARMCLIB_VERSION 5060037
+N#define __ARMCLIB_VERSION 5060034
 N
 N  #ifndef __STDDEF_DECLS
 N  #define __STDDEF_DECLS
@@ -19812,7 +19406,7 @@ N	PORT_InitTypeDef PortInitStructure;
 N    /* Инициализация выводов АЦП  */
 N    /* Разрешение тактирования портов с выводами АЦП (PORTD)*/
 N   RST_CLK_PCLKcmd (RST_CLK_PCLK_ADC | RST_CLK_PCLK_PORTD, ENABLE);
-X   RST_CLK_PCLKcmd (((uint32_t)(1U << ((((uint32_t)(0x40088000)) >> 15) & 0x1F))) | ((uint32_t)(1U << ((((uint32_t)(0x400C0000)) >> 15) & 0x1F))), ENABLE);
+X   RST_CLK_PCLKcmd (((uint32_t)(1 << ((((uint32_t)(0x40088000)) >> 15) & 0x1F))) | ((uint32_t)(1 << ((((uint32_t)(0x400C0000)) >> 15) & 0x1F))), ENABLE);
 N   // Cделать вывод U_ADC_U_PIN=PD7 аналоговым:
 N	PORT_StructInit (&PortInitStructure);
 N	PortInitStructure.PORT_Pin = U_ADC_U_PIN;
@@ -19845,8 +19439,8 @@ N		 // Источник тактирования для АЦП от частот
 N	ADC1_InitStructure.ADC_ClockSource = ADC_CLOCK_SOURCE_CPU;
 X	ADC1_InitStructure.ADC_ClockSource = (((uint32_t)0x0) << 2);
 N	// Делитель частоты 16, fadc=fcpu/16=80МГц/16=5 МГц, максимально возможная частота 14МГц
-N	ADC1_InitStructure.ADC_Prescaler = ADC_CLK_div_16;
-X	ADC1_InitStructure.ADC_Prescaler = (((uint32_t)0x4) << 12);
+N	ADC1_InitStructure.ADC_Prescaler = ADC_CLK_div_8;
+X	ADC1_InitStructure.ADC_Prescaler = (((uint32_t)0x3) << 12);
 N	// Режим одиночного преобразования
 N	ADC1_InitStructure.ADC_SamplingMode = ADC_SAMPLING_MODE_SINGLE_CONV;
 X	ADC1_InitStructure.ADC_SamplingMode = (((uint32_t)0x0) << 3);

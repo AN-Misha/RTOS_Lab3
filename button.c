@@ -14,7 +14,7 @@ void U_BTN_Init (void)
 	PORT_InitTypeDef PortInitStructure;
 
 	// Разрешить тактирование порта B
-	RST_CLK_PCLKcmd (RST_CLK_PCLK_PORTB, ENABLE);
+	RST_CLK_PCLKcmd (RST_CLK_PCLK_PORTC, ENABLE);
 
   // Сделать входом линию, к которой подключены кнопки
 	PORT_StructInit (&PortInitStructure);
